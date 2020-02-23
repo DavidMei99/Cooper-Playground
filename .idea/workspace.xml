@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e18b1a0b-7dd0-456b-839c-a92d7a63db7e" name="Default Changelist" comment="" />
+    <list default="true" id="e18b1a0b-7dd0-456b-839c-a92d7a63db7e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,6 +16,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
       <MavenImportingSettings>
@@ -22,6 +27,7 @@
     </option>
   </component>
   <component name="ProjectId" id="1YE9vaOeehzMKeJI9PqHd09qxEP" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -60,7 +66,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1582497117905</updated>
-      <workItem from="1582497121509" duration="3027000" />
+      <workItem from="1582497121509" duration="3233000" />
     </task>
     <servers />
   </component>
@@ -88,38 +94,38 @@
       <screen x="39" y="23" width="1641" height="1027" />
     </state>
     <state x="627" y="403" width="467" height="276" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/39.23.1641.1027@39.23.1641.1027" timestamp="1582499426411" />
-    <state width="1598" height="345" key="GridCell.Tab.0.bottom" timestamp="1582500003756">
+    <state width="1598" height="345" key="GridCell.Tab.0.bottom" timestamp="1582500480346">
       <screen x="39" y="23" width="1641" height="1027" />
     </state>
-    <state width="1598" height="345" key="GridCell.Tab.0.bottom/39.23.1641.1027@39.23.1641.1027" timestamp="1582500003756" />
-    <state width="1598" height="345" key="GridCell.Tab.0.center" timestamp="1582500003755">
+    <state width="1598" height="345" key="GridCell.Tab.0.bottom/39.23.1641.1027@39.23.1641.1027" timestamp="1582500480346" />
+    <state width="1598" height="345" key="GridCell.Tab.0.center" timestamp="1582500480345">
       <screen x="39" y="23" width="1641" height="1027" />
     </state>
-    <state width="1598" height="345" key="GridCell.Tab.0.center/39.23.1641.1027@39.23.1641.1027" timestamp="1582500003755" />
-    <state width="1598" height="345" key="GridCell.Tab.0.left" timestamp="1582500003754">
+    <state width="1598" height="345" key="GridCell.Tab.0.center/39.23.1641.1027@39.23.1641.1027" timestamp="1582500480345" />
+    <state width="1598" height="345" key="GridCell.Tab.0.left" timestamp="1582500480345">
       <screen x="39" y="23" width="1641" height="1027" />
     </state>
-    <state width="1598" height="345" key="GridCell.Tab.0.left/39.23.1641.1027@39.23.1641.1027" timestamp="1582500003754" />
-    <state width="1598" height="345" key="GridCell.Tab.0.right" timestamp="1582500003755">
+    <state width="1598" height="345" key="GridCell.Tab.0.left/39.23.1641.1027@39.23.1641.1027" timestamp="1582500480345" />
+    <state width="1598" height="345" key="GridCell.Tab.0.right" timestamp="1582500480345">
       <screen x="39" y="23" width="1641" height="1027" />
     </state>
-    <state width="1598" height="345" key="GridCell.Tab.0.right/39.23.1641.1027@39.23.1641.1027" timestamp="1582500003755" />
-    <state width="1598" height="345" key="GridCell.Tab.1.bottom" timestamp="1582500003627">
+    <state width="1598" height="345" key="GridCell.Tab.0.right/39.23.1641.1027@39.23.1641.1027" timestamp="1582500480345" />
+    <state width="1598" height="345" key="GridCell.Tab.1.bottom" timestamp="1582500480347">
       <screen x="39" y="23" width="1641" height="1027" />
     </state>
-    <state width="1598" height="345" key="GridCell.Tab.1.bottom/39.23.1641.1027@39.23.1641.1027" timestamp="1582500003627" />
-    <state width="1598" height="345" key="GridCell.Tab.1.center" timestamp="1582500003627">
+    <state width="1598" height="345" key="GridCell.Tab.1.bottom/39.23.1641.1027@39.23.1641.1027" timestamp="1582500480347" />
+    <state width="1598" height="345" key="GridCell.Tab.1.center" timestamp="1582500480346">
       <screen x="39" y="23" width="1641" height="1027" />
     </state>
-    <state width="1598" height="345" key="GridCell.Tab.1.center/39.23.1641.1027@39.23.1641.1027" timestamp="1582500003627" />
-    <state width="1598" height="345" key="GridCell.Tab.1.left" timestamp="1582500003626">
+    <state width="1598" height="345" key="GridCell.Tab.1.center/39.23.1641.1027@39.23.1641.1027" timestamp="1582500480346" />
+    <state width="1598" height="345" key="GridCell.Tab.1.left" timestamp="1582500480346">
       <screen x="39" y="23" width="1641" height="1027" />
     </state>
-    <state width="1598" height="345" key="GridCell.Tab.1.left/39.23.1641.1027@39.23.1641.1027" timestamp="1582500003626" />
-    <state width="1598" height="345" key="GridCell.Tab.1.right" timestamp="1582500003627">
+    <state width="1598" height="345" key="GridCell.Tab.1.left/39.23.1641.1027@39.23.1641.1027" timestamp="1582500480346" />
+    <state width="1598" height="345" key="GridCell.Tab.1.right" timestamp="1582500480346">
       <screen x="39" y="23" width="1641" height="1027" />
     </state>
-    <state width="1598" height="345" key="GridCell.Tab.1.right/39.23.1641.1027@39.23.1641.1027" timestamp="1582500003627" />
+    <state width="1598" height="345" key="GridCell.Tab.1.right/39.23.1641.1027@39.23.1641.1027" timestamp="1582500480346" />
     <state x="349" y="118" key="SettingsEditor" timestamp="1582498852574">
       <screen x="39" y="23" width="1641" height="1027" />
     </state>
