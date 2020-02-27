@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="e18b1a0b-7dd0-456b-839c-a92d7a63db7e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/model/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/model/Group.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/model/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +69,8 @@
       <option name="presentableId" value="Default" />
       <updated>1582497117905</updated>
       <workItem from="1582497121509" duration="3233000" />
+      <workItem from="1582759118224" duration="1613000" />
+      <workItem from="1582766629889" duration="872000" />
     </task>
     <servers />
   </component>
