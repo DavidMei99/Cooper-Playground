@@ -11,10 +11,12 @@ public class Main {
         Service service = new Service(userStore);
         Handler handler = new Handler(service);
 
-        Spark.post("/register/:username/pwd/:password",
+        Spark.post("/user/register/:username/pwd/:password",
                 (req, res) -> handler.createUser(req));
 
-        Spark.get("/login/:username/pwd/:password", (req, res) -> handler.loginUser(req));
+        Spark.get("/user/login/:username/pwd/:password", (req, res) -> handler.loginUser(req));
+
+        Spark.post("/group/:username")
     }
 }
 
