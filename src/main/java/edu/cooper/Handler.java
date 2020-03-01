@@ -28,9 +28,13 @@ public class Handler {
            return "Login Success\r\n";
        else
            return "Login Failure: The username or password is not correct\r\n";
-
-
    }
+
+    public String createGroup(final Request request){
+        Group group = new Group(request.params(":groupname"),service.getUserByUname(request.params(":username")).getUid());
+        service.createGroup(group);
+        return group.toString();
+    }
 
 
 

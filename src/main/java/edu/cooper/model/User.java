@@ -1,11 +1,14 @@
 package edu.cooper.model;
 
+import java.util.List;
+
 public class User {
     private final Long uid;
     private static Long count = 0L;
     private final String uname;
     private final String pwd;
     private String email;
+    private List<Long> gidList;
 
     public User(String uname, String pwd){
         this.uid = ++count;

@@ -10,8 +10,7 @@ public interface UserStore {
 
     void addUser(User user);
 
-
     User getUser(Long uid);
 
-    String getPwdByUname(String uname);
+    User getUserByUname(String uname);
 }
