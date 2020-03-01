@@ -1,4 +1,4 @@
-model/User.class
-model/Group.class
-Main.class
-model/Event.class
+edu\cooper\Main.class
+edu\cooper\model\User.class
+edu\cooper\model\Event.class
+edu\cooper\model\Group.class
