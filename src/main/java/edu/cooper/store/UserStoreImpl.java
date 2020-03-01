@@ -21,21 +21,19 @@ public class UserStoreImpl implements UserStore{
         userList.put(user.getUid(), user);
     }
 
-
-
     @Override
     public User getUser(Long uid) {
         return userList.get(uid);
     }
 
     @Override
-    public String getPwdByUname(String uname) {
+    public User getUserByUname(String uname) {
         Iterator<Map.Entry<Long, User>> itr = userList.entrySet().iterator();
         while(itr.hasNext())
         {
             Map.Entry<Long, User> entry = itr.next();
             if(uname.compareTo(entry.getValue().getUname())==0){
-                return entry.getValue().getPwd();
+                return entry.getValue();
             }
         }
         return null;

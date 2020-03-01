@@ -8,13 +8,19 @@ public class Main {
         // User user1 = new User("Joseph", "123456ab");
         // Spark.get("/uid1", (req, res) -> user1.getUid());
         UserStore userStore = new UserStoreImpl();
-        Service service = new Service(userStore);
+        GroupStore groupStore = new GroupStoreImpl();
+        Service service = new Service(userStore, groupStore);
         Handler handler = new Handler(service);
 
-        Spark.post("/register/:username/pwd/:password",
+        //user register
+        Spark.post("/user/register/:username/pwd/:password",
                 (req, res) -> handler.createUser(req));
 
-        Spark.get("/login/:username/pwd/:password", (req, res) -> handler.loginUser(req));
+        //user login
+        Spark.get("/user/login/:username/pwd/:password", (req, res) -> handler.loginUser(req));
+
+        //create group
+        Spark.post("/user/:username/group/:groupname/create", (req, res) -> handler.createGroup(req));
     }
 }
 
