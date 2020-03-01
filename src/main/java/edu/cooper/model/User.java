@@ -1,5 +1,6 @@
 package edu.cooper.model;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,18 +14,21 @@ public class User {
     private Map<Long, Boolean> groupAdmin;
 
     public Boolean isAdmin(Long gid){
-        return groupAdmin.get(gid);
+        if (groupAdmin.get(gid) == null)
+            return false;
+        else
+            return groupAdmin.get(gid);
     }
-
-    public void setAdmin(Long gid, Boolean state){
-        groupAdmin.put(gid,state);
-    }
-
 
     public User(String uname, String pwd){
         this.uid = ++count;
         this.uname = uname;
         this.pwd = pwd;
+        this.groupAdmin = new HashMap<>();
+    }
+
+    public void setAdmin(Long gid, Boolean state){
+        groupAdmin.put(gid,state);
     }
 
     public Long getUid() {return uid;}

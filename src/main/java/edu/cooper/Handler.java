@@ -34,15 +34,24 @@ public class Handler {
            return "Login Failure: The username or password is not correct\r\n";
    }
 
-   //create new group object with groupname and username
-    // call service.createGroup
-
+    //create new group object with groupname and username
+    //call service.createGroup
     public String createGroup(final Request request){
         Group group = new Group(request.params(":groupname"),service.getUserByUname(request.params(":username")).getUid());
-        service.createGroup(group, group.getAdminid());
+        service.createGroup(group);
         return group.toString();
     }
 
-
+    public String createEvent(final Request request){
+        User utemp = service.getUserByUname(request.params(":username"));
+        Group gtemp = service.getGroupByGname(request.params(":groupname"));
+        if (utemp.isAdmin(gtemp.getGid())){
+            Event event = new Event(request.params(":eventname"), gtemp.getGid());
+            service.createEvent(event);
+            return event.toString();
+        }else{
+            return "fail to create an event";
+        }
+    }
 
 }

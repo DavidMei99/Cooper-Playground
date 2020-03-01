@@ -41,11 +41,18 @@ public class Service {
     }
 
     //call groupStore.addGroup and add group to user's group list and set the user to admin
-    public Group createGroup(Group group, Long adminid) {
+    public Group createGroup(Group group) {
         groupStore.addGroup(group);
-        userStore.getUser(adminid).setAdmin(group.getGid(), true);
+        userStore.getUser(group.getAdminid()).setAdmin(group.getGid(), true);
         return group;
     }
 
+    public Event createEvent(Event event) {
+        groupStore.addEvent(event);
+        return event;
+    }
+
     public User getUserByUname(String uname) {return userStore.getUserByUname(uname);}
+
+    public Group getGroupByGname(String gname) {return groupStore.getGroupByGname(gname);}
 }

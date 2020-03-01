@@ -21,6 +21,10 @@ public class Main {
 
         //create group
         Spark.post("/user/:username/group/:groupname/create", (req, res) -> handler.createGroup(req));
+
+        //create event
+        Spark.post("/user/:username/group/:groupname/event/:eventname/create",
+                (req, res) -> handler.createEvent(req));
     }
 }
 

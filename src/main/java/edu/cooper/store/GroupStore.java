@@ -1,6 +1,6 @@
 package edu.cooper.store;
 
-import edu.cooper.model.Group;
+import edu.cooper.model.*;
 
 import java.util.Map;
 
@@ -9,5 +9,9 @@ public interface GroupStore {
 
     void addGroup(Group group);
 
+    void addEvent(Event event);
+
     Group getGroup(Long uid);
+
+    Group getGroupByGname(String gname);
 }

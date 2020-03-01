@@ -1,5 +1,7 @@
 package edu.cooper.model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Group {
@@ -8,11 +10,14 @@ public class Group {
     private static Long count = 0L;
     private Long adminid;
     private List<Long> uidList;
+    private List<Event> eventList;
 
     public Group(String gname, Long adminid){
         this.gname = gname;
         this.gid = ++count;
         this.adminid = adminid;
+        this.uidList = new ArrayList<>();
+        this.eventList = new ArrayList<>();
     }
 
     public Long getGid() {return gid;}
@@ -23,6 +28,10 @@ public class Group {
 
     public void setAdminid(Long adminid) {
         this.adminid = adminid;
+    }
+
+    public void addEvent2Group(Event event){
+        this.eventList.add(event);
     }
 
     public String toString(){
