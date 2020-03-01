@@ -15,9 +15,23 @@ public class Handler {
 
     public String createUser(final Request request){
         User user = new User(request.params(":username"), request.params(":password"));
-        service.createUser(user);
-        return user.toString();
+        if(service.isValidUname(user.getUname())) {
+            service.createUser(user);
+            return user.toString();
+        }
+        return "Invalid Username, Choose a new one\r\n";
     }
+
+   public String loginUser(final Request request){
+       User user = new User(request.params(":username"), request.params(":password"));
+       if(service.isCorrectPwd(user.getUname(), user.getPwd()))
+           return "Login Success\r\n";
+       else
+           return "Login Failure: The username or password is not correct\r\n";
+
+
+   }
+
 
 
 }

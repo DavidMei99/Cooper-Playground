@@ -22,7 +22,7 @@ public class User {
     public String getEmail() {return email;}
 
     public String toString(){
-        return Long.toString(uid) + " " + uname + " " + pwd;
+        return Long.toString(uid) + " " + uname + " " + pwd + "\r\n";
     }
 
 }

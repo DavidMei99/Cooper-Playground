@@ -1,6 +1,5 @@
 package edu.cooper;
 
-import edu.cooper.model.User;
 import edu.cooper.store.*;
 import spark.Spark;
 
@@ -14,6 +13,8 @@ public class Main {
 
         Spark.post("/register/:username/pwd/:password",
                 (req, res) -> handler.createUser(req));
+
+        Spark.get("/login/:username/pwd/:password", (req, res) -> handler.loginUser(req));
     }
 }
 
