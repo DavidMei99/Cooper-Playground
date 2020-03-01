@@ -13,11 +13,13 @@ public class Service {
         this.groupStore = groupStore;
     }
 
+    //call userStore.addUser
     public User createUser(User user){
         userStore.addUser(user);
         return user;
     }
 
+    //check if user name is valid
     public Boolean isValidUname(String uname){
         if(userStore.getUserByUname(uname) == null)
             return true;
@@ -25,18 +27,23 @@ public class Service {
             return false;
     }
 
+    //check if user exists. if exists, find user's pwd and check if it matches the input
     public Boolean isCorrectPwd(String uname, String pwd){
-        String loginUname = userStore.getUserByUname(uname).getPwd();
-        if(loginUname == null)
+        User loginuser = userStore.getUserByUname(uname);
+        if(loginuser == null)
             return false;
-        else if(pwd.compareTo(loginUname) == 0)
+        String loginPwd = loginuser.getPwd();
+
+        if(pwd.compareTo(loginPwd) == 0)
             return true;
         else
             return false;
     }
 
-    public Group createGroup(Group group) {
+    //call groupStore.addGroup and add group to user's group list and set the user to admin
+    public Group createGroup(Group group, Long adminid) {
         groupStore.addGroup(group);
+        userStore.getUser(adminid).setAdmin(group.getGid(), true);
         return group;
     }
 

@@ -2,22 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e18b1a0b-7dd0-456b-839c-a92d7a63db7e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/store/GroupStore.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/store/GroupStoreImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/Handler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/Service.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/model/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/model/Group.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/store/UserStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/store/UserStore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/store/UserStoreImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/store/UserStoreImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/cooper/Handler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/cooper/Handler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/cooper/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/cooper/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/cooper/Service.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/cooper/Service.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/cooper/model/Group.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/cooper/model/Group.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/cooper/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/cooper/model/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/cooper/store/UserStoreImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/cooper/store/UserStoreImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/store/GroupStoreImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/store/GroupStoreImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

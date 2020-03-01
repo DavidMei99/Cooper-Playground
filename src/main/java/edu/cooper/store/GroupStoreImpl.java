@@ -17,7 +17,9 @@ public class GroupStoreImpl implements GroupStore{
     public Map<Long, Group> getGroupList() {return groupList;}
 
     @Override
-    public void addGroup(Group group) {groupList.put(group.getGid(), group);}
+    public void addGroup(Group group) {
+        groupList.put(group.getGid(), group);
+    }
 
     @Override
     public Group getGroup(Long gid) {return groupList.get(gid);}

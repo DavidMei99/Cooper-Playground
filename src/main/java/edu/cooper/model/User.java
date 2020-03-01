@@ -1,6 +1,7 @@
 package edu.cooper.model;
 
 import java.util.List;
+import java.util.Map;
 
 public class User {
     private final Long uid;
@@ -8,7 +9,17 @@ public class User {
     private final String uname;
     private final String pwd;
     private String email;
-    private List<Long> gidList;
+
+    private Map<Long, Boolean> groupAdmin;
+
+    public Boolean isAdmin(Long gid){
+        return groupAdmin.get(gid);
+    }
+
+    public void setAdmin(Long gid, Boolean state){
+        groupAdmin.put(gid,state);
+    }
+
 
     public User(String uname, String pwd){
         this.uid = ++count;

@@ -21,6 +21,10 @@ public class Group {
 
     public Long getAdminid() {return adminid;}
 
+    public void setAdminid(Long adminid) {
+        this.adminid = adminid;
+    }
+
     public String toString(){
         return Long.toString(gid) + " " + gname + " " + adminid + "\r\n";
     }
