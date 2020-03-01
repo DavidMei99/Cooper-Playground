@@ -26,6 +26,8 @@ public class Group {
 
     public Long getAdminid() {return adminid;}
 
+    public List<Event> getEventList() {return eventList;}
+
     public void setAdminid(Long adminid) {
         this.adminid = adminid;
     }

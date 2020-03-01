@@ -3,6 +3,11 @@ package edu.cooper;
 import edu.cooper.model.*;
 import edu.cooper.store.*;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
 public class Service {
 
     private final UserStore userStore;
@@ -50,6 +55,40 @@ public class Service {
     public Event createEvent(Event event) {
         groupStore.addEvent(event);
         return event;
+    }
+
+    public User getUser(Long uid){
+        return userStore.getUser(uid);
+    }
+
+    public List<Group> getUserGroups(User user){
+        List<Group> temp = new ArrayList<>();
+        Iterator<Map.Entry<Long, Boolean>> itr = user.getGroupAdmin().entrySet().iterator();
+        while(itr.hasNext())
+        {
+            Map.Entry<Long, Boolean> entry = itr.next();
+            temp.add(groupStore.getGroup(entry.getKey()));
+        }
+        return temp;
+    }
+
+    public Map<Long, User> getUserList(){
+        return userStore.getUserList();
+    }
+
+    public Map<Long, Group> getGroupList(){
+        return groupStore.getGroupList();
+    }
+
+    public List<Event> getEventList(){
+        List<Event> events = new ArrayList<>();
+        Map<Long, Group> groups = getGroupList();
+        Iterator<Map.Entry<Long, Group>> itr = groups.entrySet().iterator();
+        while (itr.hasNext()) {
+            Map.Entry<Long, Group> entry = itr.next();
+            events.addAll(entry.getValue().getEventList());
+        }
+        return events;
     }
 
     public User getUserByUname(String uname) {return userStore.getUserByUname(uname);}

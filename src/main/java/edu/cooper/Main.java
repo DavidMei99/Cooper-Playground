@@ -20,11 +20,26 @@ public class Main {
         Spark.get("/user/login/:username/pwd/:password", (req, res) -> handler.loginUser(req));
 
         //create group
-        Spark.post("/user/:username/group/:groupname/create", (req, res) -> handler.createGroup(req));
+        Spark.post("/user/:username/group/:groupname/create", (req, res) -> handler.createGroup(req));//create event
 
         //create event
         Spark.post("/user/:username/group/:groupname/event/:eventname/create",
                 (req, res) -> handler.createEvent(req));
+
+        //get users (for debug)
+        Spark.get("/user/list", (req, res) -> handler.getUserList(req));
+
+        //get user's groups (for debug)
+        Spark.get("/user/:uid/group/view", (req, res) -> handler.getUserGroups(req));
+
+        //get user's groups (for user by uname)
+        Spark.get("/user/uname/:uname/group/view", (req, res) -> handler.getUserGroupsByUname(req));
+
+        //get groups (for debug)
+        Spark.get("/group/list", (req, res) -> handler.getGroupList(req));
+
+        //get events
+        Spark.get("/event/list", (req, res) -> handler.getEventList(req));
     }
 }
 

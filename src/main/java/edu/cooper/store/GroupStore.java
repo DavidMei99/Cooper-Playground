@@ -11,7 +11,7 @@ public interface GroupStore {
 
     void addEvent(Event event);
 
-    Group getGroup(Long uid);
+    Group getGroup(Long gid);
 
     Group getGroupByGname(String gname);
 }

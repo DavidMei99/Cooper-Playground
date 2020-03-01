@@ -37,6 +37,8 @@ public class User {
 
     public String getPwd() {return pwd;}
 
+    public Map<Long, Boolean> getGroupAdmin() {return groupAdmin;}
+
     public String getEmail() {return email;}
 
     public String toString(){

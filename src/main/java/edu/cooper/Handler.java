@@ -3,6 +3,8 @@ package edu.cooper;
 import edu.cooper.model.*;
 import edu.cooper.*;
 import java.util.List;
+import java.util.Map;
+
 import spark.Request;
 
 public class Handler {
@@ -52,6 +54,28 @@ public class Handler {
         }else{
             return "fail to create an event";
         }
+    }
+
+    public Map<Long, User> getUserList(final Request request){
+        return service.getUserList();
+    }
+
+    public List<Group> getUserGroups(final Request request){
+        User utemp = service.getUser(Long.valueOf(request.params(":uid")));
+        return service.getUserGroups(utemp);
+    }
+
+    public List<Group> getUserGroupsByUname(final Request request){
+        User utemp = service.getUserByUname(request.params(":uname"));
+        return service.getUserGroups(utemp);
+    }
+
+    public Map<Long, Group> getGroupList(final Request request){
+        return service.getGroupList();
+    }
+
+    public List<Event> getEventList(final Request request){
+        return service.getEventList();
     }
 
 }

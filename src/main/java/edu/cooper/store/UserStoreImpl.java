@@ -29,15 +29,13 @@ public class UserStoreImpl implements UserStore{
     @Override
     public User getUserByUname(String uname) {
         Iterator<Map.Entry<Long, User>> itr = userList.entrySet().iterator();
-        while(itr.hasNext())
-        {
+        while (itr.hasNext()) {
             Map.Entry<Long, User> entry = itr.next();
-            if(uname.compareTo(entry.getValue().getUname())==0){
+            // System.out.println(entry.getValue());
+            if (uname.compareTo(entry.getValue().getUname()) == 0) {
                 return entry.getValue();
             }
         }
         return null;
     }
-
-
 }
