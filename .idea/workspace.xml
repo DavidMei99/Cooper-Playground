@@ -2,32 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e18b1a0b-7dd0-456b-839c-a92d7a63db7e" name="Default Changelist" comment="">
-<<<<<<< HEAD
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/cooper-playground.kotlin_module" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-=======
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/zhihaowang.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/Handler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/Service.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/store/UserStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/store/UserStore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/store/UserStoreImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/store/UserStoreImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/cooper-playground.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/cooper/Handler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/cooper/Handler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/cooper/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/cooper/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/cooper/Service.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/cooper/Service.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/cooper/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/cooper/model/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/cooper/store/UserStore.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/cooper/store/UserStore.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/cooper/store/UserStoreImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/cooper/store/UserStoreImpl.class" afterDir="false" />
->>>>>>> 3d68c373b72261dc93df7b0d0da83ceee98446cd
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,14 +78,10 @@
       <option name="presentableId" value="Default" />
       <updated>1582497117905</updated>
       <workItem from="1582497121509" duration="3233000" />
-<<<<<<< HEAD
-      <workItem from="1582781533093" duration="1968000" />
-=======
       <workItem from="1582759118224" duration="1613000" />
       <workItem from="1582766629889" duration="872000" />
       <workItem from="1583008317289" duration="7693000" />
       <workItem from="1583016858027" duration="4358000" />
->>>>>>> 3d68c373b72261dc93df7b0d0da83ceee98446cd
     </task>
     <servers />
   </component>
@@ -116,17 +89,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-<<<<<<< HEAD
-    <state x="368" y="10" key="#Main" timestamp="1582781632294">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="368" y="10" key="#Main/0.0.1280.680@0.0.1280.680" timestamp="1582781632294" />
-=======
     <state x="389" y="67" key="#Main" timestamp="1583016956446">
       <screen x="0" y="23" width="1440" height="799" />
     </state>
     <state x="389" y="67" key="#Main/0.23.1440.799@0.23.1440.799" timestamp="1583016956446" />
->>>>>>> 3d68c373b72261dc93df7b0d0da83ceee98446cd
     <state x="461" y="202" width="811" height="669" key="#Project_Structure" timestamp="1582498248837">
       <screen x="39" y="23" width="1641" height="1027" />
     </state>
@@ -154,57 +120,32 @@
       <screen x="39" y="23" width="1641" height="1027" />
     </state>
     <state x="627" y="403" width="467" height="276" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/39.23.1641.1027@39.23.1641.1027" timestamp="1582499426411" />
-<<<<<<< HEAD
-    <state x="421" y="100" key="FileChooserDialogImpl" timestamp="1582781910397">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="421" y="100" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1582781910397" />
-    <state width="1237" height="133" key="GridCell.Tab.0.bottom" timestamp="1582851259385">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state width="1237" height="133" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1582851259385" />
-    <state width="1598" height="345" key="GridCell.Tab.0.bottom/39.23.1641.1027@39.23.1641.1027" timestamp="1582500480346" />
-    <state width="1237" height="133" key="GridCell.Tab.0.center" timestamp="1582851259384">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state width="1237" height="133" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1582851259384" />
-    <state width="1598" height="345" key="GridCell.Tab.0.center/39.23.1641.1027@39.23.1641.1027" timestamp="1582500480345" />
-    <state width="1237" height="133" key="GridCell.Tab.0.left" timestamp="1582851259383">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state width="1237" height="133" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1582851259383" />
-    <state width="1598" height="345" key="GridCell.Tab.0.left/39.23.1641.1027@39.23.1641.1027" timestamp="1582500480345" />
-    <state width="1237" height="133" key="GridCell.Tab.0.right" timestamp="1582851259385">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state width="1237" height="133" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1582851259384" />
-    <state width="1598" height="345" key="GridCell.Tab.0.right/39.23.1641.1027@39.23.1641.1027" timestamp="1582500480345" />
-    <state width="1598" height="345" key="GridCell.Tab.1.bottom" timestamp="1582500480347">
-      <screen x="39" y="23" width="1641" height="1027" />
-=======
     <state x="389" y="67" key="#edu.cooper.Main" timestamp="1583016972717">
       <screen x="0" y="23" width="1440" height="799" />
     </state>
     <state x="389" y="67" key="#edu.cooper.Main/0.23.1440.799@0.23.1440.799" timestamp="1583016972717" />
-    <state width="1358" height="238" key="GridCell.Tab.0.bottom" timestamp="1583021254325">
-      <screen x="0" y="23" width="1440" height="799" />
+    <state width="1237" height="133" key="GridCell.Tab.0.bottom" timestamp="1583042563154">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
+    <state width="1237" height="133" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1583042563154" />
     <state width="1358" height="238" key="GridCell.Tab.0.bottom/0.23.1440.799@0.23.1440.799" timestamp="1583021254325" />
     <state width="1598" height="345" key="GridCell.Tab.0.bottom/39.23.1641.1027@39.23.1641.1027" timestamp="1583016132630" />
-    <state width="1358" height="238" key="GridCell.Tab.0.center" timestamp="1583021254323">
-      <screen x="0" y="23" width="1440" height="799" />
+    <state width="1237" height="133" key="GridCell.Tab.0.center" timestamp="1583042563154">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
+    <state width="1237" height="133" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1583042563154" />
     <state width="1358" height="238" key="GridCell.Tab.0.center/0.23.1440.799@0.23.1440.799" timestamp="1583021254323" />
     <state width="1598" height="345" key="GridCell.Tab.0.center/39.23.1641.1027@39.23.1641.1027" timestamp="1583016132629" />
-    <state width="1358" height="238" key="GridCell.Tab.0.left" timestamp="1583021254322">
-      <screen x="0" y="23" width="1440" height="799" />
+    <state width="1237" height="133" key="GridCell.Tab.0.left" timestamp="1583042563154">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
+    <state width="1237" height="133" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1583042563154" />
     <state width="1358" height="238" key="GridCell.Tab.0.left/0.23.1440.799@0.23.1440.799" timestamp="1583021254322" />
     <state width="1598" height="345" key="GridCell.Tab.0.left/39.23.1641.1027@39.23.1641.1027" timestamp="1583016132629" />
-    <state width="1358" height="238" key="GridCell.Tab.0.right" timestamp="1583021254324">
-      <screen x="0" y="23" width="1440" height="799" />
->>>>>>> 3d68c373b72261dc93df7b0d0da83ceee98446cd
+    <state width="1237" height="133" key="GridCell.Tab.0.right" timestamp="1583042563154">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
+    <state width="1237" height="133" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1583042563154" />
     <state width="1358" height="238" key="GridCell.Tab.0.right/0.23.1440.799@0.23.1440.799" timestamp="1583021254324" />
     <state width="1598" height="345" key="GridCell.Tab.0.right/39.23.1641.1027@39.23.1641.1027" timestamp="1583016132630" />
     <state width="1358" height="238" key="GridCell.Tab.1.bottom" timestamp="1583021254328">
@@ -231,10 +172,6 @@
       <screen x="39" y="23" width="1641" height="1027" />
     </state>
     <state x="349" y="118" key="SettingsEditor/39.23.1641.1027@39.23.1641.1027" timestamp="1582498852574" />
-<<<<<<< HEAD
-    <state x="380" y="149" width="672" height="447" key="run.anything.popup" timestamp="1582781554128">
-      <screen x="0" y="0" width="1280" height="680" />
-=======
     <state x="536" y="369" key="com.intellij.ide.util.TipDialog" timestamp="1583008317270">
       <screen x="39" y="23" width="1641" height="1027" />
     </state>
@@ -245,7 +182,6 @@
     <state x="475" y="23" key="refactoring.ChangeSignatureDialog/0.23.1440.799@0.23.1440.799" timestamp="1583017398957" />
     <state x="526" y="248" width="670" height="675" key="run.anything.popup" timestamp="1582499126713">
       <screen x="39" y="23" width="1641" height="1027" />
->>>>>>> 3d68c373b72261dc93df7b0d0da83ceee98446cd
     </state>
     <state x="380" y="149" width="672" height="447" key="run.anything.popup/0.0.1280.680@0.0.1280.680" timestamp="1582781554128" />
     <state x="526" y="248" width="670" height="675" key="run.anything.popup/39.23.1641.1027@39.23.1641.1027" timestamp="1582499126713" />
