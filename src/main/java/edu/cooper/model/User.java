@@ -1,5 +1,6 @@
 package edu.cooper.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,7 @@ public class User {
     private String email;
 
     private Map<Long, Boolean> groupAdmin;
+    private List<Event> eventList;
 
     public Boolean isAdmin(Long gid){
         if (groupAdmin.get(gid) == null)
@@ -25,6 +27,7 @@ public class User {
         this.uname = uname;
         this.pwd = pwd;
         this.groupAdmin = new HashMap<>();
+        this.eventList = new ArrayList<>();
     }
 
     public void setAdmin(Long gid, Boolean state){
@@ -35,6 +38,9 @@ public class User {
 
     public String getUname() {return uname;}
 
+    public List<Event> getEventList() {return eventList;}
+
+
     public String getPwd() {return pwd;}
 
     public Map<Long, Boolean> getGroupAdmin() {return groupAdmin;}
@@ -44,5 +50,11 @@ public class User {
     public String toString(){
         return Long.toString(uid) + " " + uname + " " + pwd + "\r\n";
     }
+
+    public void addGroup(Long gid) {groupAdmin.put(gid, false); }
+
+    public void attendEvent(Event event) {eventList.add(event);}
+
+
 
 }

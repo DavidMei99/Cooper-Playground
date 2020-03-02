@@ -14,4 +14,5 @@ public interface GroupStore {
     Group getGroup(Long gid);
 
     Group getGroupByGname(String gname);
+
 }

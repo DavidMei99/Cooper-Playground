@@ -32,6 +32,18 @@ public class Service {
             return false;
     }
 
+    public Boolean isValidGname(String gname){
+        if(groupStore.getGroupByGname(gname) == null)
+            return true;
+        else
+            return false;
+    }
+
+    public Boolean isValidEname(Group gtemp, String ename){
+        return gtemp.getEventByEname(ename) == null;
+
+    }
+
     //check if user exists. if exists, find user's pwd and check if it matches the input
     public Boolean isCorrectPwd(String uname, String pwd){
         User loginuser = userStore.getUserByUname(uname);
@@ -59,6 +71,10 @@ public class Service {
 
     public User getUser(Long uid){
         return userStore.getUser(uid);
+    }
+
+    public Boolean userInGroup(Long uid, Long gid){
+        return (userStore.getUser(uid).getGroupAdmin().containsKey(gid));
     }
 
     public List<Group> getUserGroups(User user){
@@ -91,7 +107,10 @@ public class Service {
         return events;
     }
 
+
     public User getUserByUname(String uname) {return userStore.getUserByUname(uname);}
 
     public Group getGroupByGname(String gname) {return groupStore.getGroupByGname(gname);}
+
+    public List<Event> getEventsByUname(String uname) {return userStore.getUserByUname(uname).getEventList();}
 }
