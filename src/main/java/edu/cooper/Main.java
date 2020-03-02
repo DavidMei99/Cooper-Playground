@@ -22,9 +22,16 @@ public class Main {
         //create group
         Spark.post("/user/:username/group/:groupname/create", (req, res) -> handler.createGroup(req));//create event
 
+        //attend group
+        Spark.put("/user/:username/group/:groupname/attend", (req, res) -> handler.attendGroup(req));
+
         //create event
         Spark.post("/user/:username/group/:groupname/event/:eventname/create",
                 (req, res) -> handler.createEvent(req));
+
+        //attend event
+        Spark.put("/user/:username/group/:groupname/event/:eventname/attend",
+                (req, res) -> handler.attendEvent(req));
 
         //get users (for debug)
         Spark.get("/user/list", (req, res) -> handler.getUserList(req));
@@ -40,6 +47,9 @@ public class Main {
 
         //get events
         Spark.get("/event/list", (req, res) -> handler.getEventList(req));
+
+        //get user's events (for user by uname)
+        Spark.get("/user/uname/:uname/event/view", (req, res) -> handler.getUserEventsByUname(req));
     }
 }
 

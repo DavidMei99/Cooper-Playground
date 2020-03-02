@@ -1,8 +1,6 @@
 package edu.cooper.model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class Group {
     private final String gname;
@@ -38,5 +36,19 @@ public class Group {
 
     public String toString(){
         return Long.toString(gid) + " " + gname + " " + adminid + "\r\n";
+    }
+
+    public void addUser(Long uid) {uidList.add(uid);}
+
+    public Event getEventByEname(String ename){
+        Iterator<Event> itr = eventList.iterator();
+        while(itr.hasNext()){
+            Event etemp = itr.next();
+            if(ename.compareTo(etemp.getEname()) == 0)
+                return etemp;
+
+        }
+        return null;
+
     }
 }

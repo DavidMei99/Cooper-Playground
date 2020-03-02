@@ -24,6 +24,12 @@ public class Event {
         return groupId;
     }
 
+    public String getEname() {return ename;}
+
+    public Long getEid() {return eid;}
+
+    public void attendEvent(Long uid) {attendees.add(uid); }
+
     public void setEtime(String etime) {
         this.etime = etime;
     }
