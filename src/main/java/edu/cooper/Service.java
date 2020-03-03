@@ -77,6 +77,10 @@ public class Service {
         return (userStore.getUser(uid).getGroupAdmin().containsKey(gid));
     }
 
+    public Boolean userInEvent(Long uid, Event event){return (userStore.getUser(uid).getEventList().contains(event)); }
+
+    public Boolean isAdminOfGroup(long uid, Long gid) { return userStore.getUser(uid).isAdmin(gid);}
+
     public List<Group> getUserGroups(User user){
         List<Group> temp = new ArrayList<>();
         Iterator<Map.Entry<Long, Boolean>> itr = user.getGroupAdmin().entrySet().iterator();
@@ -113,4 +117,21 @@ public class Service {
     public Group getGroupByGname(String gname) {return groupStore.getGroupByGname(gname);}
 
     public List<Event> getEventsByUname(String uname) {return userStore.getUserByUname(uname).getEventList();}
+
+    public void editEvent(Event event, String etime, String location) {
+        event.setEtime(etime);
+        event.setLocation(location);
+    }
+
+    public void removeUserFromGroup(User user, Group group) {
+        List<Event> eventList = group.getEventList();
+        for (Event event: eventList) {
+            if (userInEvent(user.getUid(), event)) {
+                user.removeEvent(event);
+                event.removeUser(user.getUid());
+            }
+        }
+        user.removeGroup(group.getGid());
+        group.removeUser(user.getUid());
+    }
 }

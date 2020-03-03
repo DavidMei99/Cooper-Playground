@@ -20,10 +20,18 @@ public class Main {
         Spark.get("/user/login/:username/pwd/:password", (req, res) -> handler.loginUser(req));
 
         //create group
-        Spark.post("/user/:username/group/:groupname/create", (req, res) -> handler.createGroup(req));//create event
+        Spark.post("/user/:username/group/:groupname/create", (req, res) -> handler.createGroup(req));
 
         //attend group
         Spark.put("/user/:username/group/:groupname/attend", (req, res) -> handler.attendGroup(req));
+
+        //add user to group
+        Spark.put("/user/:username/group/:groupname/user/:username2/invite",
+                (req, res) -> handler.addUserToGroup(req));
+
+        //remove user from group
+        Spark.put("/user/:username/group/:groupname/user/:username2/remove",
+                (req, res) -> handler.removeUserFromGroup(req));
 
         //create event
         Spark.post("/user/:username/group/:groupname/event/:eventname/create",
@@ -32,6 +40,18 @@ public class Main {
         //attend event
         Spark.put("/user/:username/group/:groupname/event/:eventname/attend",
                 (req, res) -> handler.attendEvent(req));
+
+        //add member to event
+        Spark.put("/user/:username/group/:groupname/event/:eventname/user/:username2/invite",
+                (req, res) -> handler.addUserToEvent(req));
+
+        //remove member from event
+        Spark.put("/user/:username/group/:groupname/event/:eventname/user/:username2/remove",
+                (req, res) -> handler.removeUserFromEvent(req));
+
+        // edit event time and location
+        Spark.put("/user/:username/group/:groupname/event/:eventname/time/:time/location/:location/edit",
+                (req, res) -> handler.editEvent(req));
 
         //get users (for debug)
         Spark.get("/user/list", (req, res) -> handler.getUserList(req));
