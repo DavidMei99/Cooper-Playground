@@ -1,24 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e18b1a0b-7dd0-456b-839c-a92d7a63db7e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/Handler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/Service.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/model/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/model/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/model/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/model/Group.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/store/GroupStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/store/GroupStore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/store/GroupStoreImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/store/GroupStoreImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/cooper/Handler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/cooper/Handler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/cooper/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/cooper/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/cooper/Service.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/cooper/Service.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/cooper/model/Event.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/cooper/model/Event.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/cooper/model/Group.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/cooper/model/Group.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/cooper/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/cooper/model/User.class" afterDir="false" />
-    </list>
+    <list default="true" id="e18b1a0b-7dd0-456b-839c-a92d7a63db7e" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -99,7 +82,7 @@
       <workItem from="1583043180909" duration="69000" />
       <workItem from="1583097564176" duration="7198000" />
       <workItem from="1583105227872" duration="8478000" />
-      <workItem from="1583187537913" duration="308000" />
+      <workItem from="1583187537913" duration="376000" />
     </task>
     <servers />
   </component>
