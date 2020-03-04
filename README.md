@@ -11,11 +11,11 @@ We design and build a public event platform that allows groups to create events 
 
 2. Administrator of a group can create/edit events(time, location, etc.).
 
-3. User can join any existing group, and administrator can add/delete members from her managed group.
+3. Users can join any existing group, and administrators can add/delete members from their managed groups.
 
-4. User can view his/her attended groups as well as associated events.
+4. Users can view their attended groups as well as associated events.
 
-5. User can parpticipate any event created in her attended group.
+5. Users can parpticipate in any event created in their attended groups.
 
 ## Program Guidance
 
