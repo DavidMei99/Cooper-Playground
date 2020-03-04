@@ -7,7 +7,7 @@ Team Members: Di Mei, I-An Huang, Zhihao Wang
 
 We design and build a public event platform that allows groups to create events and users to register as attendees. Its basic functions are shown below:
 
-1. Users can create accounts and any registered user can creat a group and become the administrator of a group.
+1. Users can create accounts and any registered user can create a group and become the administrator of a group.
 
 2. Administrator of a group can create/edit events(time, location, etc.).
 
@@ -15,7 +15,7 @@ We design and build a public event platform that allows groups to create events 
 
 4. Users can view their attended groups as well as associated events.
 
-5. Users can parpticipate in any event created in their attended groups.
+5. Users can participate in any event created in their attended groups.
 
 ## Program Guidance
 
