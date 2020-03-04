@@ -246,4 +246,10 @@ public class Handler {
 
         return utemp2.getUname() + " is successfully removed from the event " + etemp.getEname() + "\r\n";
     }
+
+    public String welcome() {
+        return "\r\nYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY\r\n" +
+                   ">Welcome to Cooper Playground!<\r\n" +
+                   "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n";
+    }
 }

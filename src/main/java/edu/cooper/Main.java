@@ -12,6 +12,9 @@ public class Main {
         Service service = new Service(userStore, groupStore);
         Handler handler = new Handler(service);
 
+
+        Spark.get("/ping", (req, res) -> handler.welcome());
+
         //user register
         Spark.post("/user/register/:username/pwd/:password",
                 (req, res) -> handler.createUser(req));
