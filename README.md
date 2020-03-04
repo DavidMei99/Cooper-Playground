@@ -1,9 +1,9 @@
-#Cooper-Playground
+# Cooper-Playground
 
-Software Engineering Project in ECE366
+Software Engineering Project in ECE366<br/>
 Team Members: Di Mei, I-An Huang, Zhihao Wang
 
-##Introduction
+## Introduction
 
 We design and build a public event platform that allows groups to create events and users to register as attendees. Its basic functions are shown below:
 
@@ -17,25 +17,25 @@ We design and build a public event platform that allows groups to create events 
 
 5. User can parpticipate any event created in her attended group.
 
-##Program Guidance
+## Program Guidance
 
 Platform:
 
-Apache Maven 4.0.0
-Spark 2.8.0
-IDE: IntelliJ Version 2019.3.2
+Apache Maven 4.0.0<br/>
+Spark 2.8.0<br/>
+IDE: IntelliJ Version 2019.3.2<br/>
 
 Running Commands:
 
-Compile the program:
+Compile the program
 
-'''bash
+```bash
 mvn clean compile
-'''
+```
 
-Run Main.java:
+Run Main.java
 
-'''bash
+```bash
 $ javac Main.java
 $ java Main
-'''
+```

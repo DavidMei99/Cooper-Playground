@@ -3,12 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e18b1a0b-7dd0-456b-839c-a92d7a63db7e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/Handler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/model/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/model/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/cooper/Handler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/cooper/Handler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/cooper/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/cooper/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,6 +88,7 @@
       <workItem from="1583187537913" duration="308000" />
       <workItem from="1583304293997" duration="586000" />
       <workItem from="1583287624866" duration="2967000" />
+      <workItem from="1583291170141" duration="410000" />
     </task>
     <servers />
   </component>
@@ -187,11 +183,11 @@
       <screen x="39" y="23" width="1641" height="1027" />
     </state>
     <state x="349" y="118" key="SettingsEditor/39.23.1641.1027@39.23.1641.1027" timestamp="1582498852574" />
-    <state x="388" y="229" key="com.intellij.ide.util.TipDialog" timestamp="1583304295357">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state x="536" y="369" key="com.intellij.ide.util.TipDialog" timestamp="1583291171421">
+      <screen x="39" y="23" width="1641" height="1027" />
     </state>
     <state x="388" y="229" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1583304295357" />
-    <state x="536" y="369" key="com.intellij.ide.util.TipDialog/39.23.1641.1027@39.23.1641.1027" timestamp="1583187541101" />
+    <state x="536" y="369" key="com.intellij.ide.util.TipDialog/39.23.1641.1027@39.23.1641.1027" timestamp="1583291171421" />
     <state x="475" y="23" key="refactoring.ChangeSignatureDialog" timestamp="1583026945798">
       <screen x="0" y="23" width="1440" height="799" />
     </state>
