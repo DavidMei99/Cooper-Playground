@@ -40,7 +40,6 @@ public class User {
 
     public List<Event> getEventList() {return eventList;}
 
-
     public String getPwd() {return pwd;}
 
     public Map<Long, Boolean> getGroupAdmin() {return groupAdmin;}
@@ -53,7 +52,11 @@ public class User {
 
     public void addGroup(Long gid) {groupAdmin.put(gid, false); }
 
+    public void removeGroup(Long gid) {groupAdmin.remove(gid);}
+
     public void attendEvent(Event event) {eventList.add(event);}
+
+    public void removeEvent(Event event) {eventList.remove(event);}
 
 
 

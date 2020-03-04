@@ -95,16 +95,16 @@ public class Handler {
         if(gtemp == null)
             return "Group does not exist\r\n";
         else if (utemp == null)
-            return "User does not exits\r\n";
+            return "User does not exit\r\n";
         else if (!service.userInGroup(utemp.getUid(), gtemp.getGid()))
             return "User is not in the group " + gtemp.getGname()+"\r\n";
         Event etemp = gtemp.getEventByEname(request.params(":eventname"));
         if(etemp == null)
-            return "Event does not exits\r\n";
+            return "Event does not exist\r\n";
+
         utemp.attendEvent(etemp);
         etemp.attendEvent(utemp.getUid());
         return utemp.getUname() + " successfully attended " + etemp.getEname() + "\r\n";
-
     }
 
 
@@ -134,4 +134,122 @@ public class Handler {
         return service.getEventsByUname(request.params(":uname"));
     }
 
+    public String editEvent(final Request request) {
+        User utemp = service.getUserByUname(request.params(":username"));
+        Group gtemp = service.getGroupByGname(request.params(":groupname"));
+        if (utemp == null)
+            return "User does not exit\r\n";
+        else if (gtemp == null)
+            return "Group does not exist\r\n";
+        Event etemp = gtemp.getEventByEname(request.params(":eventname"));
+        if (etemp == null)
+            return "Event does not exit\r\n";
+        else if (!service.isAdminOfGroup(utemp.getUid(), gtemp.getGid()))
+            return "User is not admin of the group " + gtemp.getGname() + "\r\n";
+
+        String etime = request.params(":time");
+        String location = request.params(":location");
+        service.editEvent(etemp, etime, location);
+
+        return etemp.toString();
+    }
+
+    public String addUserToGroup(final Request request) {
+        User utemp = service.getUserByUname(request.params(":username"));
+        Group gtemp = service.getGroupByGname(request.params(":groupname"));
+        User utemp2 = service.getUserByUname(request.params(":username2"));
+        if (utemp == null)
+            return "User does not exit\r\n";
+        else if (gtemp == null)
+            return "Group does not exist\r\n";
+        else if (utemp2 == null)
+            return "Target user does not exist\r\n";
+        else if (!service.isAdminOfGroup(utemp.getUid(), gtemp.getGid()))
+            return "User is not admin of the group " + gtemp.getGname() + "\r\n";
+        else if (service.userInGroup(utemp2.getUid(), gtemp.getGid()))
+            return "Target user is already in group " + gtemp.getGname() + "\r\n";
+
+        utemp2.addGroup(gtemp.getGid());
+        gtemp.addUser(utemp2.getUid());
+
+        return utemp2.getUname() + " is successfully added to the group " + gtemp.getGname() + "\r\n";
+    }
+
+    public String removeUserFromGroup(final Request request) {
+        User utemp = service.getUserByUname(request.params(":username"));
+        Group gtemp = service.getGroupByGname(request.params(":groupname"));
+        User utemp2 = service.getUserByUname(request.params(":username2"));
+        if (utemp == null)
+            return "User does not exit\r\n";
+        else if (gtemp == null)
+            return "Group does not exist\r\n";
+        else if (utemp2 == null)
+            return "Target user does not exist\r\n";
+        else if (!service.isAdminOfGroup(utemp.getUid(), gtemp.getGid()))
+            return "User is not admin of the group " + gtemp.getGname() + "\r\n";
+        else if (!service.userInGroup(utemp2.getUid(), gtemp.getGid()))
+            return "Target user is not in group " + gtemp.getGname() + "\r\n";
+
+        service.removeUserFromGroup(utemp2, gtemp);
+
+        return utemp2.getUname() + " is successfully removed from the group " + gtemp.getGname() + "\r\n";
+    }
+
+    public String addUserToEvent(final Request request) {
+        User utemp = service.getUserByUname(request.params(":username"));
+        Group gtemp = service.getGroupByGname(request.params(":groupname"));
+        User utemp2 = service.getUserByUname(request.params(":username2"));
+        if (utemp == null)
+            return "User does not exit\r\n";
+        else if (gtemp == null)
+            return "Group does not exist\r\n";
+        Event etemp = gtemp.getEventByEname(request.params(":eventname"));
+        if (etemp == null)
+            return "Event does not exit\r\n";
+        else if (utemp2 == null)
+            return "Target user does not exist\r\n";
+        else if (!service.isAdminOfGroup(utemp.getUid(), gtemp.getGid()))
+            return "User is not admin of the group " + gtemp.getGname() + "\r\n";
+        else if (!service.userInGroup(utemp2.getUid(), gtemp.getGid()))
+            return "Target user is not in group " + gtemp.getGname() + "\r\n";
+        else if (service.userInEvent(utemp2.getUid(), etemp))
+            return "Target user is already in event " + etemp.getEname() + "\r\n";
+
+        utemp2.attendEvent(etemp);
+        etemp.attendEvent(utemp2.getUid());
+
+        return utemp2.getUname() + " is successfully invited to the event " + etemp.getEname() + "\r\n";
+    }
+
+    public String removeUserFromEvent(final Request request) {
+        User utemp = service.getUserByUname(request.params(":username"));
+        Group gtemp = service.getGroupByGname(request.params(":groupname"));
+        User utemp2 = service.getUserByUname(request.params(":username2"));
+        if (utemp == null)
+            return "User does not exit\r\n";
+        else if (gtemp == null)
+            return "Group does not exist\r\n";
+        Event etemp = gtemp.getEventByEname(request.params(":eventname"));
+        if (etemp == null)
+            return "Event does not exit\r\n";
+        else if (utemp2 == null)
+            return "Target user does not exist\r\n";
+        else if (!service.isAdminOfGroup(utemp.getUid(), gtemp.getGid()))
+            return "User is not admin of the group " + gtemp.getGname() + "\r\n";
+        else if (!service.userInGroup(utemp2.getUid(), gtemp.getGid()))
+            return "Target user is not in group " + gtemp.getGname() + "\r\n";
+        else if (!service.userInEvent(utemp2.getUid(), etemp))
+            return "Target user is not in event " + etemp.getEname() + "\r\n";
+
+        utemp2.removeEvent(etemp);
+        etemp.removeUser(utemp2.getUid());
+
+        return utemp2.getUname() + " is successfully removed from the event " + etemp.getEname() + "\r\n";
+    }
+
+    public String welcome() {
+        return "\r\nYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY\r\n" +
+                   ">Welcome to Cooper Playground!<\r\n" +
+                   "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n";
+    }
 }

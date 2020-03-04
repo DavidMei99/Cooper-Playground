@@ -16,6 +16,8 @@ public class Event {
     public Event(String ename, Long groupId){
         this.eid = ++count;
         this.ename = ename;
+        this.etime = "";
+        this.location = "";
         this.groupId = groupId;
         this.attendees = new ArrayList<>();
     }
@@ -30,6 +32,8 @@ public class Event {
 
     public void attendEvent(Long uid) {attendees.add(uid); }
 
+    public void removeUser(Long uid) {attendees.remove(uid); }
+
     public void setEtime(String etime) {
         this.etime = etime;
     }
@@ -39,6 +43,6 @@ public class Event {
     }
 
     public String toString(){
-        return eid + " " + ename + " " + groupId + "\r\n";
+        return eid + " " + ename + " " + groupId + " " + etime + " " + location + "\r\n";
     }
 }

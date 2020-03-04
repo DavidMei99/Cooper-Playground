@@ -40,6 +40,8 @@ public class Group {
 
     public void addUser(Long uid) {uidList.add(uid);}
 
+    public void removeUser(Long uid) {uidList.remove(uid);}
+
     public Event getEventByEname(String ename){
         Iterator<Event> itr = eventList.iterator();
         while(itr.hasNext()){
