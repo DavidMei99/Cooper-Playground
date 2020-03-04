@@ -22,10 +22,11 @@ public class User {
             return groupAdmin.get(gid);
     }
 
-    public User(String uname, String pwd){
+    public User(String uname, String pwd, String email){
         this.uid = ++count;
         this.uname = uname;
         this.pwd = pwd;
+        this.email = email;
         this.groupAdmin = new HashMap<>();
         this.eventList = new ArrayList<>();
     }

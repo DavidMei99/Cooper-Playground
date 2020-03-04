@@ -18,10 +18,10 @@ public class Handler {
     //create new user object with unique username and pwd
     //add created user object to UserStore
     public String createUser(final Request request){
-        User user = new User(request.params(":username"), request.params(":password"));
+        User user = new User(request.params(":username"), request.params(":password"), request.params(":email"));
         if(service.isValidUname(user.getUname())) {
             service.createUser(user);
-            return user.toString();
+            return "Successfully registered user " + user.getUname() + "\r\n";
         }
         return "Username already exists\r\n";
     }
@@ -47,7 +47,7 @@ public class Handler {
         Group group = new Group(request.params(":groupname"),utemp.getUid());
         if(service.isValidGname(group.getGname())) {
             service.createGroup(group);
-            return group.toString();
+            return "Successfully created the group " + group.getGname() + " by " + utemp.getUname() + "\r\n";
         }
         return "Group name already exists\r\n";
 
@@ -64,9 +64,10 @@ public class Handler {
         else if (utemp.isAdmin(gtemp.getGid()) && service.isValidEname(gtemp, ename)){
             Event event = new Event(ename, gtemp.getGid());
             service.createEvent(event);
-            return event.toString();
+            return "Successfully created the event " + event.getEname() + " in " + gtemp.getGname() +
+                    " by " + utemp.getUname() + "\r\n";
         }else{
-            return "fail to create an event\r\n";
+            return "Fail to create an event\r\n";
         }
     }
 
@@ -118,7 +119,7 @@ public class Handler {
     }
 
     public List<Group> getUserGroupsByUname(final Request request){
-        User utemp = service.getUserByUname(request.params(":uname"));
+        User utemp = service.getUserByUname(request.params(":username"));
         return service.getUserGroups(utemp);
     }
 
@@ -131,7 +132,7 @@ public class Handler {
     }
 
     public List<Event> getUserEventsByUname(final Request request){
-        return service.getEventsByUname(request.params(":uname"));
+        return service.getEventsByUname(request.params(":username"));
     }
 
     public String editEvent(final Request request) {
@@ -151,7 +152,7 @@ public class Handler {
         String location = request.params(":location");
         service.editEvent(etemp, etime, location);
 
-        return etemp.toString();
+        return "Event " + etemp.getEname() + " will happen at " + etemp.getEtime() + " in " + etemp.getLocation() + "\r\n";
     }
 
     public String addUserToGroup(final Request request) {
@@ -252,4 +253,25 @@ public class Handler {
                    ">Welcome to Cooper Playground!<\r\n" +
                    "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n";
     }
+
+    public String transferAdmin(final Request request) {
+        User utemp = service.getUserByUname(request.params(":username"));
+        User utemp2 = service.getUserByUname(request.params(":username2"));
+        Group gtemp = service.getGroupByGname(request.params(":groupname"));
+        if (utemp == null)
+            return "User does not exit\r\n";
+        else if (utemp2 == null)
+            return "Target user does not exit\r\n";
+        else if (gtemp == null)
+            return "Group does not exist\r\n";
+        else if (!service.isAdminOfGroup(utemp.getUid(), gtemp.getGid()))
+            return "User is not admin of the group " + gtemp.getGname() + "\r\n";
+        else if (!service.userInGroup(utemp2.getUid(), gtemp.getGid()))
+            return "Target user is not in group " + gtemp.getGname() + "\r\n";
+        gtemp.setAdminid(utemp2.getUid());
+        utemp.setAdmin(gtemp.getGid(), false);
+        utemp2.setAdmin(gtemp.getGid(), true);
+        return "Successfully transferred admin from " + utemp.getUname() + " to " + utemp2.getUname() + "\r\n";
+    }
+
 }

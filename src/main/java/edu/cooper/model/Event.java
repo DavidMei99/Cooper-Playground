@@ -30,6 +30,10 @@ public class Event {
 
     public Long getEid() {return eid;}
 
+    public String getEtime() {return etime;}
+
+    public String getLocation() {return location;}
+
     public void attendEvent(Long uid) {attendees.add(uid); }
 
     public void removeUser(Long uid) {attendees.remove(uid); }

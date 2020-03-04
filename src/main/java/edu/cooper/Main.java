@@ -16,7 +16,7 @@ public class Main {
         Spark.get("/ping", (req, res) -> handler.welcome());
 
         //user register
-        Spark.post("/user/register/:username/pwd/:password",
+        Spark.post("/user/register/:username/pwd/:password/email/:email",
                 (req, res) -> handler.createUser(req));
 
         //user login
@@ -63,7 +63,7 @@ public class Main {
         Spark.get("/user/:uid/group/view", (req, res) -> handler.getUserGroups(req));
 
         //get user's groups (for user by uname)
-        Spark.get("/user/uname/:uname/group/view", (req, res) -> handler.getUserGroupsByUname(req));
+        Spark.get("/user/uname/:username/group/view", (req, res) -> handler.getUserGroupsByUname(req));
 
         //get groups (for debug)
         Spark.get("/group/list", (req, res) -> handler.getGroupList(req));
@@ -72,7 +72,20 @@ public class Main {
         Spark.get("/event/list", (req, res) -> handler.getEventList(req));
 
         //get user's events (for user by uname)
-        Spark.get("/user/uname/:uname/event/view", (req, res) -> handler.getUserEventsByUname(req));
+        Spark.get("/user/username/:username/event/view", (req, res) -> handler.getUserEventsByUname(req));
+
+        //trans group's admin
+        Spark.put("/user/:username/user/:username2/group/:groupname/transfer", (req, res) -> handler.transferAdmin(req));
+
+        //remove groups
+
+        //remove events
+
+        //rsvp in frontend
+
+        //leave group
+
+        //not attend event
     }
 }
 
