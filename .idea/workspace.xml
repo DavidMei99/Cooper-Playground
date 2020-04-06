@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e18b1a0b-7dd0-456b-839c-a92d7a63db7e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +59,7 @@
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="edu.cooper.Main" />
-      <module name="Cooper-Playground" />
+      <module name="cooper-playground" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -89,6 +88,7 @@
       <workItem from="1583304293997" duration="586000" />
       <workItem from="1583287624866" duration="2967000" />
       <workItem from="1583291170141" duration="641000" />
+      <workItem from="1586199866548" duration="508000" />
     </task>
     <servers />
   </component>
@@ -104,11 +104,12 @@
       <screen x="39" y="23" width="1641" height="1027" />
     </state>
     <state x="461" y="202" width="811" height="669" key="#Project_Structure/39.23.1641.1027@39.23.1641.1027" timestamp="1582498248837" />
-    <state x="325" y="198" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1583035944927">
-      <screen x="39" y="23" width="1641" height="1027" />
+    <state x="326" y="198" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586199954251">
+      <screen x="40" y="23" width="1640" height="1027" />
     </state>
     <state x="228" y="37" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.799@0.23.1440.799" timestamp="1583016929663" />
     <state x="325" y="198" key="#com.intellij.execution.impl.EditConfigurationsDialog/39.23.1641.1027@39.23.1641.1027" timestamp="1583035944927" />
+    <state x="326" y="198" key="#com.intellij.execution.impl.EditConfigurationsDialog/40.23.1640.1027@40.23.1640.1027" timestamp="1586199954251" />
     <state x="555" y="202" key="#com.intellij.ide.util.MemberChooser" timestamp="1583109206117">
       <screen x="0" y="23" width="1440" height="799" />
     </state>
