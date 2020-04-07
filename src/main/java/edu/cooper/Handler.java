@@ -18,7 +18,8 @@ public class Handler {
     //create new user object with unique username and pwd
     //add created user object to UserStore
     public String createUser(final Request request){
-        User user = new User(request.params(":username"), request.params(":password"), request.params(":email"));
+        // User user = new User(request.params(":username"), request.params(":password"), request.params(":email"));
+        CreateUserRequest user = new CreateUserRequest(request.params(":username"), request.params(":password"), request.params(":email"));
         if(service.isValidUname(user.getUname())) {
             service.createUser(user);
             return "Successfully registered user " + user.getUname() + "\r\n";
@@ -44,7 +45,7 @@ public class Handler {
         User utemp = service.getUserByUname(request.params(":username"));
         if (utemp == null)
             return "User does not exits\r\n";
-        Group group = new Group(request.params(":groupname"),utemp.getUid());
+        CreateGroupRequest group = new CreateGroupRequest(request.params(":groupname"),utemp.getUid());
         if(service.isValidGname(group.getGname())) {
             service.createGroup(group);
             return "Successfully created the group " + group.getGname() + " by " + utemp.getUname() + "\r\n";
@@ -61,8 +62,8 @@ public class Handler {
             return "Group does not exist\r\n";
         else if (utemp == null)
             return "User does not exits\r\n";
-        else if (utemp.isAdmin(gtemp.getGid()) && service.isValidEname(gtemp, ename)){
-            Event event = new Event(ename, gtemp.getGid());
+        else if (gtemp.getAdminid() == utemp.getUid() && service.isValidEname(gtemp, ename)){
+            CreateEventRequest event = new CreateEventRequest(ename, "", "", gtemp.getGid());
             service.createEvent(event);
             return "Successfully created the event " + event.getEname() + " in " + gtemp.getGname() +
                     " by " + utemp.getUname() + "\r\n";
@@ -109,7 +110,7 @@ public class Handler {
     }
 
 
-    public Map<Long, User> getUserList(final Request request){
+    public List<User> getUserList(final Request request){
         return service.getUserList();
     }
 
@@ -123,7 +124,7 @@ public class Handler {
         return service.getUserGroups(utemp);
     }
 
-    public Map<Long, Group> getGroupList(final Request request){
+    public List<Group> getGroupList(final Request request){
         return service.getGroupList();
     }
 
@@ -272,6 +273,73 @@ public class Handler {
         utemp.setAdmin(gtemp.getGid(), false);
         utemp2.setAdmin(gtemp.getGid(), true);
         return "Successfully transferred admin from " + utemp.getUname() + " to " + utemp2.getUname() + "\r\n";
+    }
+
+
+    public class CreateUserRequest {
+        private final String uname;
+        private final String pwd;
+        private final String email;
+
+        public CreateUserRequest(String uname, String pwd, String email) {
+            this.uname = uname;
+            this.pwd = pwd;
+            this.email = email;
+        }
+
+        public String getUname() {
+            return uname;
+        }
+
+        public String getPwd() {
+            return pwd;
+        }
+
+        public String getEmail(){ return email; }
+    }
+
+    public class CreateGroupRequest {
+        private final String gname;
+        private final Long adminid;
+
+        public CreateGroupRequest(String gname, Long adminid) {
+            this.gname = gname;
+            this.adminid = adminid;
+        }
+
+        public String getGname() {
+            return gname;
+        }
+
+        public Long getAdminid() {
+            return adminid;
+        }
+    }
+
+    public class CreateEventRequest {
+        private final String ename;
+        private final String etime;
+        private final String location;
+        private final Long groupId;
+
+        public CreateEventRequest(String ename, String etime, String location, Long groupId) {
+            this.ename = ename;
+            this.etime = etime;
+            this.location = location;
+            this.groupId = groupId;
+        }
+
+        public String getEname() {
+            return ename;
+        }
+
+        public String getEtime() {
+            return etime;
+        }
+
+        public String getLocation() { return location; }
+
+        public Long getGroupId() { return groupId; }
     }
 
 }

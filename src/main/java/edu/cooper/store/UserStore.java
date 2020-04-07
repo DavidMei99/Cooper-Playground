@@ -1,14 +1,16 @@
 package edu.cooper.store;
 
+import edu.cooper.Handler;
 import edu.cooper.model.*;
 
+import java.util.List;
 import java.util.Map;
 
 public interface UserStore {
 
-    Map<Long, User> getUserList();
+    List<User> getUserList();
 
-    void addUser(User user);
+    User addUser(final Handler.CreateUserRequest createUserRequest);
 
     User getUser(Long uid);
 

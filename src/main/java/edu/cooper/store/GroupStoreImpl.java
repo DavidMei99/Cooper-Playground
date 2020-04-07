@@ -6,6 +6,7 @@ import edu.cooper.model.User;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 public class GroupStoreImpl implements GroupStore{
@@ -16,7 +17,7 @@ public class GroupStoreImpl implements GroupStore{
         this.groupList = new HashMap<>();
     }
 
-    public Map<Long, Group> getGroupList() {return groupList;}
+    public List<Group> getGroupList() {return groupList;}
 
     @Override
     public void addGroup(Group group) {

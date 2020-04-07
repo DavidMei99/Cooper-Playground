@@ -5,14 +5,14 @@ import java.util.*;
 public class Group {
     private final String gname;
     private final Long gid;
-    private static Long count = 0L;
+    // private static Long count = 0L;
     private Long adminid;
     private List<Long> uidList;
     private List<Event> eventList;
 
-    public Group(String gname, Long adminid){
+    public Group(Long gid, String gname, Long adminid){
         this.gname = gname;
-        this.gid = ++count;
+        this.gid = gid;
         this.adminid = adminid;
         this.uidList = new ArrayList<>();
         this.eventList = new ArrayList<>();

@@ -10,19 +10,51 @@ import java.util.Map;
 
 public class Service {
 
-    private final UserStore userStore;
-    private final GroupStore groupStore;
+    private final UserStoreJdbi userStore;
+    private final GroupStoreJdbi groupStore;
+    private final EventStoreJdbi eventStore;
 
-    public Service(UserStore userStore, GroupStore groupStore){
+    public Service(UserStoreJdbi userStore, GroupStoreJdbi groupStore, EventStoreJdbi eventStore){
         this.userStore = userStore;
         this.groupStore = groupStore;
+        this.eventStore = eventStore;
     }
 
     //call userStore.addUser
-    public User createUser(User user){
-        userStore.addUser(user);
-        return user;
+    public User createUser(final Handler.CreateUserRequest createUserRequest) {
+        return userStore.addUser(createUserRequest);
     }
+
+    //call groupStore.addGroup and add group to user's group list and set the user to admin
+    public Group createGroup(final Handler.CreateGroupRequest createGroupRequest) {
+        return groupStore.addGroup(createGroupRequest);
+        // userStore.getUser(group.getAdminid()).setAdmin(group.getGid(), true);
+        // return group;
+    }
+
+    public Event createEvent(final Handler.CreateEventRequest createEventRequest) {
+        return eventStore.addEvent(createEventRequest);
+    }
+
+    public List<User> getUserList(){
+        return userStore.getUserList();
+    }
+
+    public List<Group> getGroupList(){
+        return groupStore.getGroupList();
+    }
+
+    public List<Event> getEventList(){
+        return eventStore.getEventList();
+    }
+
+    public User getUser(Long uid){
+        return userStore.getUser(uid);
+    }
+
+    public User getUserByUname(String uname) {return userStore.getUserByUname(uname);}
+
+    public Group getGroupByGname(String gname) {return groupStore.getGroupByGname(gname);}
 
     //check if user name is valid
     public Boolean isValidUname(String uname){
@@ -39,11 +71,6 @@ public class Service {
             return false;
     }
 
-    public Boolean isValidEname(Group gtemp, String ename){
-        return gtemp.getEventByEname(ename) == null;
-
-    }
-
     //check if user exists. if exists, find user's pwd and check if it matches the input
     public Boolean isCorrectPwd(String uname, String pwd){
         User loginuser = userStore.getUserByUname(uname);
@@ -57,20 +84,22 @@ public class Service {
             return false;
     }
 
-    //call groupStore.addGroup and add group to user's group list and set the user to admin
-    public Group createGroup(Group group) {
-        groupStore.addGroup(group);
-        userStore.getUser(group.getAdminid()).setAdmin(group.getGid(), true);
-        return group;
+    public Boolean isAdminOfGroup(long uid, Long gid) { return groupStore.getGroup(gid).getAdminid() == uid;}
+
+    public void editEvent(Event event, String etime, String location) {
+        // event.setEtime(etime);
+        // event.setLocation(location);
+        eventStore.editEvent(event.getEid(), etime, location);
     }
 
-    public Event createEvent(Event event) {
-        groupStore.addEvent(event);
-        return event;
-    }
 
-    public User getUser(Long uid){
-        return userStore.getUser(uid);
+
+
+
+
+    public Boolean isValidEname(Group gtemp, String ename){
+        return gtemp.getEventByEname(ename) == null;
+
     }
 
     public Boolean userInGroup(Long uid, Long gid){
@@ -78,8 +107,6 @@ public class Service {
     }
 
     public Boolean userInEvent(Long uid, Event event){return (userStore.getUser(uid).getEventList().contains(event)); }
-
-    public Boolean isAdminOfGroup(long uid, Long gid) { return userStore.getUser(uid).isAdmin(gid);}
 
     public List<Group> getUserGroups(User user){
         List<Group> temp = new ArrayList<>();
@@ -92,15 +119,7 @@ public class Service {
         return temp;
     }
 
-    public Map<Long, User> getUserList(){
-        return userStore.getUserList();
-    }
-
-    public Map<Long, Group> getGroupList(){
-        return groupStore.getGroupList();
-    }
-
-    public List<Event> getEventList(){
+    /*public List<Event> getEventList(){
         List<Event> events = new ArrayList<>();
         Map<Long, Group> groups = getGroupList();
         Iterator<Map.Entry<Long, Group>> itr = groups.entrySet().iterator();
@@ -109,19 +128,9 @@ public class Service {
             events.addAll(entry.getValue().getEventList());
         }
         return events;
-    }
-
-
-    public User getUserByUname(String uname) {return userStore.getUserByUname(uname);}
-
-    public Group getGroupByGname(String gname) {return groupStore.getGroupByGname(gname);}
+    }*/
 
     public List<Event> getEventsByUname(String uname) {return userStore.getUserByUname(uname).getEventList();}
-
-    public void editEvent(Event event, String etime, String location) {
-        event.setEtime(etime);
-        event.setLocation(location);
-    }
 
     public void removeUserFromGroup(User user, Group group) {
         List<Event> eventList = group.getEventList();

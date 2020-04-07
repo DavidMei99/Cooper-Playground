@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class User {
     private final Long uid;
-    private static Long count = 0L;
+    // private static Long count = 0L;
     private final String uname;
     private final String pwd;
     private String email;
@@ -15,15 +15,15 @@ public class User {
     private Map<Long, Boolean> groupAdmin;
     private List<Event> eventList;
 
-    public Boolean isAdmin(Long gid){
+    /*public Boolean isAdmin(Long gid){
         if (groupAdmin.get(gid) == null)
             return false;
         else
             return groupAdmin.get(gid);
-    }
+    }*/
 
-    public User(String uname, String pwd, String email){
-        this.uid = ++count;
+    public User(Long uid, String uname, String pwd, String email){
+        this.uid = uid;
         this.uname = uname;
         this.pwd = pwd;
         this.email = email;

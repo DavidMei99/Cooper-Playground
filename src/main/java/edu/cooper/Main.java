@@ -1,17 +1,27 @@
 package edu.cooper;
 
 import edu.cooper.store.*;
+import org.jdbi.v3.core.Jdbi;
 import spark.Spark;
+import edu.cooper.store.GroupStoreJdbi;
+import edu.cooper.store.UserStoreJdbi;
+
 
 public class Main {
     public static void main(String[] args) {
         // User user1 = new User("Joseph", "123456ab");
         // Spark.get("/uid1", (req, res) -> user1.getUid());
-        UserStore userStore = new UserStoreImpl();
-        GroupStore groupStore = new GroupStoreImpl();
-        Service service = new Service(userStore, groupStore);
-        Handler handler = new Handler(service);
 
+        String url = "jdbc:h2:~/cpdb";
+        Jdbi jdbi = Jdbi.create(url);
+        GroupStoreJdbi groupStore = new GroupStoreJdbi(jdbi);
+        UserStoreJdbi userStore = new UserStoreJdbi(jdbi);
+        EventStoreJdbi eventStore = new EventStoreJdbi(jdbi);
+
+        // UserStore userStore = new UserStoreImpl();
+        // GroupStore groupStore = new GroupStoreImpl();
+        Service service = new Service(userStore, groupStore, eventStore);
+        Handler handler = new Handler(service);
 
         Spark.get("/ping", (req, res) -> handler.welcome());
 

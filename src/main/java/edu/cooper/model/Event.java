@@ -6,15 +6,15 @@ import java.util.List;
 
 public class Event {
     private final Long eid;
-    private static Long count = 0L;
+    // private static Long count = 0L;
     private final String ename;
     private String etime;
     private String location;
     private final Long groupId;
     private List<Long> attendees;
 
-    public Event(String ename, Long groupId){
-        this.eid = ++count;
+    public Event(Long eid, String ename, Long groupId){
+        this.eid = eid;
         this.ename = ename;
         this.etime = "";
         this.location = "";
