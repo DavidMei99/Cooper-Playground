@@ -17,10 +17,18 @@ public class Main {
         GroupStoreJdbi groupStore = new GroupStoreJdbi(jdbi);
         UserStoreJdbi userStore = new UserStoreJdbi(jdbi);
         EventStoreJdbi eventStore = new EventStoreJdbi(jdbi);
+        UserGroupRelJdbi userGroupRel = new UserGroupRelJdbi(jdbi);
+        UserEventRelJdbi userEventRel = new UserEventRelJdbi(jdbi);
+        // create tables in "cpdb" database
+        groupStore.populateDb();
+        userStore.populateDb();
+        eventStore.populateDb();
+        userGroupRel.populateDb();
+        userEventRel.populateDb();
 
         // UserStore userStore = new UserStoreImpl();
         // GroupStore groupStore = new GroupStoreImpl();
-        Service service = new Service(userStore, groupStore, eventStore);
+        Service service = new Service(userStore, groupStore, eventStore, userGroupRel, userEventRel);
         Handler handler = new Handler(service);
 
         Spark.get("/ping", (req, res) -> handler.welcome());

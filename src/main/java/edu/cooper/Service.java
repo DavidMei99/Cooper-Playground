@@ -13,11 +13,16 @@ public class Service {
     private final UserStoreJdbi userStore;
     private final GroupStoreJdbi groupStore;
     private final EventStoreJdbi eventStore;
+    private final UserGroupRelJdbi userGroupRel;
+    private final UserEventRelJdbi userEventRel;
 
-    public Service(UserStoreJdbi userStore, GroupStoreJdbi groupStore, EventStoreJdbi eventStore){
+    public Service(UserStoreJdbi userStore, GroupStoreJdbi groupStore, EventStoreJdbi eventStore,
+                   UserGroupRelJdbi userGroupRel, UserEventRelJdbi userEventRel){
         this.userStore = userStore;
         this.groupStore = groupStore;
         this.eventStore = eventStore;
+        this.userGroupRel = userGroupRel;
+        this.userEventRel = userEventRel;
     }
 
     //call userStore.addUser
@@ -92,6 +97,23 @@ public class Service {
         eventStore.editEvent(event.getEid(), etime, location);
     }
 
+    public Boolean userInGroup(Long uid, Long gid){
+        return userGroupRel.getUserGroupList(uid).contains(gid);
+    }
+
+    public Boolean userInEvent(Long uid, Long eid){return userEventRel.getUserEventList(uid).contains(eid); }
+
+    public List<Group> getUserGroups(Long uid){ return userGroupRel.getUserGroupObjList(uid); }
+
+    public void removeUserFromGroup(User user, Group group) {
+        List<Event> eventList = eventStore.getGroupEvents(group.getGid());
+        for (Event event: eventList) {
+            if (userInEvent(user.getUid(), event.getEid())) {
+                userEventRel.removeUserFromEvent(user.getUid(), event.getEid());
+            }
+        }
+        userGroupRel.removeUserFromGroup(user.getUid(), group.getGid());
+    }
 
 
 
@@ -99,16 +121,9 @@ public class Service {
 
     public Boolean isValidEname(Group gtemp, String ename){
         return gtemp.getEventByEname(ename) == null;
-
     }
 
-    public Boolean userInGroup(Long uid, Long gid){
-        return (userStore.getUser(uid).getGroupAdmin().containsKey(gid));
-    }
-
-    public Boolean userInEvent(Long uid, Event event){return (userStore.getUser(uid).getEventList().contains(event)); }
-
-    public List<Group> getUserGroups(User user){
+    /*public List<Group> getUserGroups(User user){
         List<Group> temp = new ArrayList<>();
         Iterator<Map.Entry<Long, Boolean>> itr = user.getGroupAdmin().entrySet().iterator();
         while(itr.hasNext())
@@ -117,7 +132,7 @@ public class Service {
             temp.add(groupStore.getGroup(entry.getKey()));
         }
         return temp;
-    }
+    }*/
 
     /*public List<Event> getEventList(){
         List<Event> events = new ArrayList<>();
@@ -131,16 +146,4 @@ public class Service {
     }*/
 
     public List<Event> getEventsByUname(String uname) {return userStore.getUserByUname(uname).getEventList();}
-
-    public void removeUserFromGroup(User user, Group group) {
-        List<Event> eventList = group.getEventList();
-        for (Event event: eventList) {
-            if (userInEvent(user.getUid(), event)) {
-                user.removeEvent(event);
-                event.removeUser(user.getUid());
-            }
-        }
-        user.removeGroup(group.getGid());
-        group.removeUser(user.getUid());
-    }
 }

@@ -2,20 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e18b1a0b-7dd0-456b-839c-a92d7a63db7e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/store/EventStore.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/store/EventStoreJdbi.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/store/GroupStoreJdbi.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/store/UserStoreJdbi.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/store/UserEventRelJdbi.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/store/UserGroupRelJdbi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/Handler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/Service.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/model/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/model/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/model/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/model/Group.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/store/GroupStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/store/GroupStore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/store/UserStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/store/UserStore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/store/EventStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/store/EventStore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/store/EventStoreJdbi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/store/EventStoreJdbi.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +98,8 @@
       <workItem from="1586199866548" duration="508000" />
       <workItem from="1586201413501" duration="90000" />
       <workItem from="1586201602203" duration="7147000" />
-      <workItem from="1586219418859" duration="7017000" />
+      <workItem from="1586219418859" duration="7358000" />
+      <workItem from="1586379313599" duration="4596000" />
     </task>
     <servers />
   </component>
@@ -201,11 +196,12 @@
       <screen x="39" y="23" width="1641" height="1027" />
     </state>
     <state x="349" y="118" key="SettingsEditor/39.23.1641.1027@39.23.1641.1027" timestamp="1582498852574" />
-    <state x="536" y="369" key="com.intellij.ide.util.TipDialog" timestamp="1583291171421">
-      <screen x="39" y="23" width="1641" height="1027" />
+    <state x="537" y="369" key="com.intellij.ide.util.TipDialog" timestamp="1586379325069">
+      <screen x="40" y="23" width="1640" height="1027" />
     </state>
     <state x="388" y="229" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1583304295357" />
     <state x="536" y="369" key="com.intellij.ide.util.TipDialog/39.23.1641.1027@39.23.1641.1027" timestamp="1583291171421" />
+    <state x="537" y="369" key="com.intellij.ide.util.TipDialog/40.23.1640.1027@40.23.1640.1027" timestamp="1586379325069" />
     <state x="475" y="23" key="refactoring.ChangeSignatureDialog" timestamp="1583026945798">
       <screen x="0" y="23" width="1440" height="799" />
     </state>

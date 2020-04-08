@@ -14,4 +14,6 @@ public interface EventStore {
     Event getEvent(Long eid);
 
     void editEvent(Long eid, String etime, String location);
+
+    List<Event> getGroupEvents(Long gid);
 }

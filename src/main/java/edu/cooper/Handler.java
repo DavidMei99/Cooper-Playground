@@ -116,12 +116,12 @@ public class Handler {
 
     public List<Group> getUserGroups(final Request request){
         User utemp = service.getUser(Long.valueOf(request.params(":uid")));
-        return service.getUserGroups(utemp);
+        return service.getUserGroups(utemp.getUid());
     }
 
     public List<Group> getUserGroupsByUname(final Request request){
         User utemp = service.getUserByUname(request.params(":username"));
-        return service.getUserGroups(utemp);
+        return service.getUserGroups(utemp.getUid());
     }
 
     public List<Group> getGroupList(final Request request){
@@ -214,7 +214,7 @@ public class Handler {
             return "User is not admin of the group " + gtemp.getGname() + "\r\n";
         else if (!service.userInGroup(utemp2.getUid(), gtemp.getGid()))
             return "Target user is not in group " + gtemp.getGname() + "\r\n";
-        else if (service.userInEvent(utemp2.getUid(), etemp))
+        else if (service.userInEvent(utemp2.getUid(), etemp.getEid()))
             return "Target user is already in event " + etemp.getEname() + "\r\n";
 
         utemp2.attendEvent(etemp);
@@ -240,7 +240,7 @@ public class Handler {
             return "User is not admin of the group " + gtemp.getGname() + "\r\n";
         else if (!service.userInGroup(utemp2.getUid(), gtemp.getGid()))
             return "Target user is not in group " + gtemp.getGname() + "\r\n";
-        else if (!service.userInEvent(utemp2.getUid(), etemp))
+        else if (!service.userInEvent(utemp2.getUid(), etemp.getEid()))
             return "Target user is not in event " + etemp.getEname() + "\r\n";
 
         utemp2.removeEvent(etemp);
