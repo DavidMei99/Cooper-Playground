@@ -5,6 +5,7 @@ import edu.cooper.model.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class EventStoreJdbi implements EventStore {
 
@@ -18,7 +19,7 @@ public class EventStoreJdbi implements EventStore {
         jdbi.withHandle(
                 handle ->
                         handle.execute(
-                                "create table events (eid bigint auto_increment, ename varchar(255), etime varchar(255), location varchar(255), gid bigint);"));
+                                "create table if not exists events (eid bigint auto_increment, ename varchar(255), etime varchar(255), location varchar(255), gid bigint);"));
     }
 
     @Override
@@ -30,7 +31,7 @@ public class EventStoreJdbi implements EventStore {
     }
 
     @Override
-    public Event addEvent(Handler.CreateEventRequest createEventRequest) {
+    public Optional<Event> addEvent(Handler.CreateEventRequest createEventRequest) {
         return jdbi.withHandle(
                 handle ->
                         handle
@@ -41,15 +42,17 @@ public class EventStoreJdbi implements EventStore {
                                 .bind("gid", createEventRequest.getGroupId())
                                 .executeAndReturnGeneratedKeys("eid")
                                 .mapToBean(Event.class)
-                                .one());
+                                .findOne());
     }
 
     @Override
-    public Event getEvent(Long eid) {
+    public Optional<Event> getEvent(Long eid) {
         return jdbi.withHandle(
                 handle ->
                         handle.select
-                                ("select eid, ename, etime, location, gid from groups where eid = ?", eid).mapToBean(Event.class).one());
+                                ("select eid, ename, etime, location, gid from events where eid = ?", eid)
+                                .mapToBean(Event.class)
+                                .findOne());
     }
 
     @Override
@@ -57,8 +60,10 @@ public class EventStoreJdbi implements EventStore {
         jdbi.withHandle(
                 handle ->
                         handle.createUpdate
-                                ("update events() set etime=:etime, location=:location where eid=:eid")
-                                        .bind("etime", etime).bind("location", location).bind("eid", eid).execute());
+                                ("update events set etime=:etime, location=:location where eid=:eid")
+                                .bind("etime", etime)
+                                .bind("location", location)
+                                .bind("eid", eid).execute());
     }
 
     @Override
@@ -70,4 +75,14 @@ public class EventStoreJdbi implements EventStore {
                                 .bind("gid", gid)
                                 .mapToBean(Event.class).list());
     }
+
+    @Override
+    public Optional<Event> getEventByEname(String ename, Long gid) {
+        return jdbi.withHandle(
+                handle ->
+                        handle.select
+                                ("select eid, ename, etime, location, gid from events where ename=:ename and gid =:gid")
+                                .bind("ename", ename).bind("gid", gid).mapToBean(Event.class).findOne());
+    }
+
 }

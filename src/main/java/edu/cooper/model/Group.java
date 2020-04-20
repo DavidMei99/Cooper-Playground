@@ -3,19 +3,21 @@ package edu.cooper.model;
 import java.util.*;
 
 public class Group {
-    private final String gname;
-    private final Long gid;
+    private String gname;
+    private Long gid;
     // private static Long count = 0L;
     private Long adminid;
-    private List<Long> uidList;
-    private List<Event> eventList;
 
     public Group(Long gid, String gname, Long adminid){
         this.gname = gname;
         this.gid = gid;
         this.adminid = adminid;
-        this.uidList = new ArrayList<>();
-        this.eventList = new ArrayList<>();
+    }
+
+    public Group(){
+        this.gname = "";
+        this.gid = 0L;
+        this.adminid = 0L;
     }
 
     public Long getGid() {return gid;}
@@ -24,33 +26,17 @@ public class Group {
 
     public Long getAdminid() {return adminid;}
 
-    public List<Event> getEventList() {return eventList;}
-
     public void setAdminid(Long adminid) {
         this.adminid = adminid;
     }
 
-    public void addEvent2Group(Event event){
-        this.eventList.add(event);
+    public String toString(){ return Long.toString(gid) + " " + gname + " " + adminid + "\r\n"; }
+
+    public void setGid(Long gid) {
+        this.gid = gid;
     }
 
-    public String toString(){
-        return Long.toString(gid) + " " + gname + " " + adminid + "\r\n";
-    }
-
-    public void addUser(Long uid) {uidList.add(uid);}
-
-    public void removeUser(Long uid) {uidList.remove(uid);}
-
-    public Event getEventByEname(String ename){
-        Iterator<Event> itr = eventList.iterator();
-        while(itr.hasNext()){
-            Event etemp = itr.next();
-            if(ename.compareTo(etemp.getEname()) == 0)
-                return etemp;
-
-        }
-        return null;
-
+    public void setGname(String gname) {
+        this.gname = gname;
     }
 }

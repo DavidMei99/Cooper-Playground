@@ -5,6 +5,7 @@ import edu.cooper.model.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public interface UserStore {
 
@@ -14,5 +15,5 @@ public interface UserStore {
 
     User getUser(Long uid);
 
-    User getUserByUname(String uname);
+    Optional<User> getUserByUname(String uname);
 }

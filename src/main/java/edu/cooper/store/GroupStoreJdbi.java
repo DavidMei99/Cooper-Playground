@@ -5,6 +5,7 @@ import edu.cooper.model.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class GroupStoreJdbi implements GroupStore{
 
@@ -18,7 +19,7 @@ public class GroupStoreJdbi implements GroupStore{
         jdbi.withHandle(
                 handle ->
                         handle.execute(
-                                "create table groups (gid bigint auto_increment, gname varchar(255), adminid bigint);"));
+                                "create table if not exists groups (gid bigint auto_increment, gname varchar(255), adminid bigint);"));
     }
 
     @Override
@@ -30,7 +31,7 @@ public class GroupStoreJdbi implements GroupStore{
     }
 
     @Override
-    public Group addGroup(final Handler.CreateGroupRequest createGroupRequest) {
+    public Optional<Group> addGroup(final Handler.CreateGroupRequest createGroupRequest) {
         return jdbi.withHandle(
                 handle ->
                         handle
@@ -39,7 +40,7 @@ public class GroupStoreJdbi implements GroupStore{
                                 .bind("adminid", createGroupRequest.getAdminid())
                                 .executeAndReturnGeneratedKeys("gid")
                                 .mapToBean(Group.class)
-                                .one());
+                                .findOne());
     }
 
     /*@Override
@@ -48,18 +49,34 @@ public class GroupStoreJdbi implements GroupStore{
     }*/
 
     @Override
-    public Group getGroup(Long gid) {
+    public Optional<Group> getGroup(Long gid) {
         return jdbi.withHandle(
                 handle ->
                         handle.select
-                                ("select gid, gname, adminid from groups where gid = ?", gid).mapToBean(Group.class).one());
+                                ("select gid, gname, adminid from groups where gid = ?", gid)
+                                .mapToBean(Group.class)
+                                .findOne());
     }
 
     @Override
-    public Group getGroupByGname(String gname) {
+    public Optional<Group> getGroupByGname(String gname) {
         return jdbi.withHandle(
                 handle ->
                         handle.select
-                                ("select gid, gname, adminid from groups where gname = ?", gname).mapToBean(Group.class).one());
+                                ("select gid, gname, adminid from groups where gname = ?", gname)
+                                .mapToBean(Group.class)
+                                .findOne());
     }
+
+    @Override
+    public void updateAdmin(Long gid, Long adminid) {
+        jdbi.withHandle(
+                handle ->
+                        handle
+                                .createUpdate("update groups set adminid =:adminid where gid =:gid")
+                                .bind("adminid", adminid)
+                                .bind("gid", gid)
+                                .execute());
+    }
+
 }

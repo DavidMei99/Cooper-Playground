@@ -2,14 +2,45 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e18b1a0b-7dd0-456b-839c-a92d7a63db7e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/store/UserEventRelJdbi.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/store/UserGroupRelJdbi.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/cooper/Handler$CreateEventRequest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/cooper/Handler$CreateGroupRequest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/cooper/Handler$CreateUserRequest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/cooper/store/EventStore.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/cooper/store/EventStoreJdbi.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/cooper/store/GroupStoreJdbi.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/cooper/store/UserEventRelJdbi.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/cooper/store/UserGroupRelJdbi.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/cooper/store/UserStoreJdbi.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/Handler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/Service.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/model/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/model/Event.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/model/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/model/Group.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/model/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/store/EventStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/store/EventStore.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/store/EventStoreJdbi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/store/EventStoreJdbi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/store/GroupStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/store/GroupStore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/store/GroupStoreImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/store/GroupStoreJdbi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/store/GroupStoreJdbi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/store/UserEventRelJdbi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/store/UserEventRelJdbi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/store/UserGroupRelJdbi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/store/UserGroupRelJdbi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/store/UserStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/store/UserStore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/store/UserStoreImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/cooper/store/UserStoreJdbi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/cooper/store/UserStoreJdbi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/cooper/Handler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/cooper/Handler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/cooper/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/cooper/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/cooper/Service.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/cooper/Service.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/cooper/model/Event.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/cooper/model/Event.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/cooper/model/Group.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/cooper/model/Group.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/cooper/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/cooper/model/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/cooper/store/GroupStore.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/cooper/store/GroupStore.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/cooper/store/GroupStoreImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/cooper/store/UserStore.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/cooper/store/UserStore.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/cooper/store/UserStoreImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,6 +131,9 @@
       <workItem from="1586201602203" duration="7147000" />
       <workItem from="1586219418859" duration="7358000" />
       <workItem from="1586379313599" duration="4596000" />
+      <workItem from="1586502854317" duration="280000" />
+      <workItem from="1587321932381" duration="10425000" />
+      <workItem from="1587344671813" duration="5442000" />
     </task>
     <servers />
   </component>
@@ -121,12 +155,13 @@
     <state x="228" y="37" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.799@0.23.1440.799" timestamp="1583016929663" />
     <state x="325" y="198" key="#com.intellij.execution.impl.EditConfigurationsDialog/39.23.1641.1027@39.23.1641.1027" timestamp="1583035944927" />
     <state x="326" y="198" key="#com.intellij.execution.impl.EditConfigurationsDialog/40.23.1640.1027@40.23.1640.1027" timestamp="1586199954251" />
-    <state x="672" y="253" key="#com.intellij.ide.util.MemberChooser" timestamp="1586224481699">
-      <screen x="40" y="23" width="1640" height="1027" />
+    <state x="673" y="253" key="#com.intellij.ide.util.MemberChooser" timestamp="1587328594004">
+      <screen x="41" y="23" width="1639" height="1027" />
     </state>
     <state x="555" y="202" key="#com.intellij.ide.util.MemberChooser/0.23.1440.799@0.23.1440.799" timestamp="1583109206117" />
     <state x="672" y="253" key="#com.intellij.ide.util.MemberChooser/39.23.1641.1027@39.23.1641.1027" timestamp="1583040373453" />
     <state x="672" y="253" key="#com.intellij.ide.util.MemberChooser/40.23.1640.1027@40.23.1640.1027" timestamp="1586224481699" />
+    <state x="673" y="253" key="#com.intellij.ide.util.MemberChooser/41.23.1639.1027@41.23.1639.1027" timestamp="1587328594004" />
     <state x="491" y="260" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1583016927981">
       <screen x="0" y="23" width="1440" height="799" />
     </state>
@@ -144,73 +179,83 @@
       <screen x="0" y="23" width="1440" height="799" />
     </state>
     <state x="389" y="67" key="#edu.cooper.Main/0.23.1440.799@0.23.1440.799" timestamp="1583016972717" />
-    <state width="1358" height="162" key="GridCell.Tab.0.bottom" timestamp="1583290550082">
-      <screen x="0" y="23" width="1440" height="799" />
+    <state width="1597" height="364" key="GridCell.Tab.0.bottom" timestamp="1587351882572">
+      <screen x="41" y="23" width="1639" height="1027" />
     </state>
     <state width="1237" height="204" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1583304623289" />
     <state width="1358" height="162" key="GridCell.Tab.0.bottom/0.23.1440.799@0.23.1440.799" timestamp="1583290550082" />
     <state width="1598" height="345" key="GridCell.Tab.0.bottom/39.23.1641.1027@39.23.1641.1027" timestamp="1583104774737" />
-    <state width="1358" height="162" key="GridCell.Tab.0.center" timestamp="1583290550081">
-      <screen x="0" y="23" width="1440" height="799" />
+    <state width="1597" height="364" key="GridCell.Tab.0.bottom/41.23.1639.1027@41.23.1639.1027" timestamp="1587351882572" />
+    <state width="1597" height="364" key="GridCell.Tab.0.center" timestamp="1587351882571">
+      <screen x="41" y="23" width="1639" height="1027" />
     </state>
     <state width="1237" height="204" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1583304623288" />
     <state width="1358" height="162" key="GridCell.Tab.0.center/0.23.1440.799@0.23.1440.799" timestamp="1583290550081" />
     <state width="1598" height="345" key="GridCell.Tab.0.center/39.23.1641.1027@39.23.1641.1027" timestamp="1583104774737" />
-    <state width="1358" height="162" key="GridCell.Tab.0.left" timestamp="1583290550081">
-      <screen x="0" y="23" width="1440" height="799" />
+    <state width="1597" height="364" key="GridCell.Tab.0.center/41.23.1639.1027@41.23.1639.1027" timestamp="1587351882571" />
+    <state width="1597" height="364" key="GridCell.Tab.0.left" timestamp="1587351882571">
+      <screen x="41" y="23" width="1639" height="1027" />
     </state>
     <state width="1237" height="204" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1583304623288" />
     <state width="1358" height="162" key="GridCell.Tab.0.left/0.23.1440.799@0.23.1440.799" timestamp="1583290550081" />
     <state width="1598" height="345" key="GridCell.Tab.0.left/39.23.1641.1027@39.23.1641.1027" timestamp="1583104774736" />
-    <state width="1358" height="162" key="GridCell.Tab.0.right" timestamp="1583290550082">
-      <screen x="0" y="23" width="1440" height="799" />
+    <state width="1597" height="364" key="GridCell.Tab.0.left/41.23.1639.1027@41.23.1639.1027" timestamp="1587351882571" />
+    <state width="1597" height="364" key="GridCell.Tab.0.right" timestamp="1587351882572">
+      <screen x="41" y="23" width="1639" height="1027" />
     </state>
     <state width="1237" height="204" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1583304623288" />
     <state width="1358" height="162" key="GridCell.Tab.0.right/0.23.1440.799@0.23.1440.799" timestamp="1583290550082" />
     <state width="1598" height="345" key="GridCell.Tab.0.right/39.23.1641.1027@39.23.1641.1027" timestamp="1583104774737" />
-    <state width="1358" height="162" key="GridCell.Tab.1.bottom" timestamp="1583290549897">
-      <screen x="0" y="23" width="1440" height="799" />
+    <state width="1597" height="364" key="GridCell.Tab.0.right/41.23.1639.1027@41.23.1639.1027" timestamp="1587351882572" />
+    <state width="1597" height="364" key="GridCell.Tab.1.bottom" timestamp="1587351882357">
+      <screen x="41" y="23" width="1639" height="1027" />
     </state>
     <state width="1237" height="204" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1583304623289" />
     <state width="1358" height="162" key="GridCell.Tab.1.bottom/0.23.1440.799@0.23.1440.799" timestamp="1583290549897" />
     <state width="1598" height="345" key="GridCell.Tab.1.bottom/39.23.1641.1027@39.23.1641.1027" timestamp="1583104774738" />
-    <state width="1358" height="162" key="GridCell.Tab.1.center" timestamp="1583290549896">
-      <screen x="0" y="23" width="1440" height="799" />
+    <state width="1597" height="364" key="GridCell.Tab.1.bottom/41.23.1639.1027@41.23.1639.1027" timestamp="1587351882357" />
+    <state width="1597" height="364" key="GridCell.Tab.1.center" timestamp="1587351882357">
+      <screen x="41" y="23" width="1639" height="1027" />
     </state>
     <state width="1237" height="204" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1583304623289" />
     <state width="1358" height="162" key="GridCell.Tab.1.center/0.23.1440.799@0.23.1440.799" timestamp="1583290549896" />
     <state width="1598" height="345" key="GridCell.Tab.1.center/39.23.1641.1027@39.23.1641.1027" timestamp="1583104774738" />
-    <state width="1358" height="162" key="GridCell.Tab.1.left" timestamp="1583290549895">
-      <screen x="0" y="23" width="1440" height="799" />
+    <state width="1597" height="364" key="GridCell.Tab.1.center/41.23.1639.1027@41.23.1639.1027" timestamp="1587351882357" />
+    <state width="1597" height="364" key="GridCell.Tab.1.left" timestamp="1587351882357">
+      <screen x="41" y="23" width="1639" height="1027" />
     </state>
     <state width="1237" height="204" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1583304623289" />
     <state width="1358" height="162" key="GridCell.Tab.1.left/0.23.1440.799@0.23.1440.799" timestamp="1583290549895" />
     <state width="1598" height="345" key="GridCell.Tab.1.left/39.23.1641.1027@39.23.1641.1027" timestamp="1583104774738" />
-    <state width="1358" height="162" key="GridCell.Tab.1.right" timestamp="1583290549897">
-      <screen x="0" y="23" width="1440" height="799" />
+    <state width="1597" height="364" key="GridCell.Tab.1.left/41.23.1639.1027@41.23.1639.1027" timestamp="1587351882357" />
+    <state width="1597" height="364" key="GridCell.Tab.1.right" timestamp="1587351882357">
+      <screen x="41" y="23" width="1639" height="1027" />
     </state>
     <state width="1237" height="204" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1583304623289" />
     <state width="1358" height="162" key="GridCell.Tab.1.right/0.23.1440.799@0.23.1440.799" timestamp="1583290549897" />
     <state width="1598" height="345" key="GridCell.Tab.1.right/39.23.1641.1027@39.23.1641.1027" timestamp="1583104774738" />
+    <state width="1597" height="364" key="GridCell.Tab.1.right/41.23.1639.1027@41.23.1639.1027" timestamp="1587351882357" />
     <state x="349" y="118" key="SettingsEditor" timestamp="1582498852574">
       <screen x="39" y="23" width="1641" height="1027" />
     </state>
     <state x="349" y="118" key="SettingsEditor/39.23.1641.1027@39.23.1641.1027" timestamp="1582498852574" />
-    <state x="537" y="369" key="com.intellij.ide.util.TipDialog" timestamp="1586379325069">
-      <screen x="40" y="23" width="1640" height="1027" />
+    <state x="538" y="369" key="com.intellij.ide.util.TipDialog" timestamp="1587321932724">
+      <screen x="41" y="23" width="1639" height="1027" />
     </state>
     <state x="388" y="229" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1583304295357" />
     <state x="536" y="369" key="com.intellij.ide.util.TipDialog/39.23.1641.1027@39.23.1641.1027" timestamp="1583291171421" />
-    <state x="537" y="369" key="com.intellij.ide.util.TipDialog/40.23.1640.1027@40.23.1640.1027" timestamp="1586379325069" />
+    <state x="537" y="369" key="com.intellij.ide.util.TipDialog/40.23.1640.1027@40.23.1640.1027" timestamp="1586502856346" />
+    <state x="538" y="369" key="com.intellij.ide.util.TipDialog/41.23.1639.1027@41.23.1639.1027" timestamp="1587321932724" />
     <state x="475" y="23" key="refactoring.ChangeSignatureDialog" timestamp="1583026945798">
       <screen x="0" y="23" width="1440" height="799" />
     </state>
     <state x="475" y="23" key="refactoring.ChangeSignatureDialog/0.23.1440.799@0.23.1440.799" timestamp="1583026945798" />
-    <state x="526" y="248" width="670" height="675" key="run.anything.popup" timestamp="1582499126713">
-      <screen x="39" y="23" width="1641" height="1027" />
+    <state x="527" y="248" width="670" height="675" key="run.anything.popup" timestamp="1587329619693">
+      <screen x="41" y="23" width="1639" height="1027" />
     </state>
     <state x="380" y="149" width="672" height="447" key="run.anything.popup/0.0.1280.680@0.0.1280.680" timestamp="1582781554128" />
     <state x="526" y="248" width="670" height="675" key="run.anything.popup/39.23.1641.1027@39.23.1641.1027" timestamp="1582499126713" />
+    <state x="527" y="248" width="670" height="675" key="run.anything.popup/41.23.1639.1027@41.23.1639.1027" timestamp="1587329619693" />
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1583197265080">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

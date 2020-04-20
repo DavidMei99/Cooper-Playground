@@ -17,7 +17,7 @@ public class UserEventRelJdbi {
         jdbi.withHandle(
                 handle ->
                         handle.execute(
-                                "create table userevent (uid bigint, eid bigint);"));
+                                "create table if not exists userevent (uid bigint, eid bigint);"));
     }
 
     public void addUserEvent(Long uid, Long eid) {
@@ -30,11 +30,20 @@ public class UserEventRelJdbi {
                                 .execute());
     }
 
-    public List<Long> getUserEventList(Long uid) {
+    public List<Event> getUserEventList(Long uid) {
         return jdbi.withHandle(
                 handle ->
                         handle.select
-                                ("select eid from userevent where uid = ?", uid).mapTo(Long.class).list());
+                                ("select events.eid, ename, etime, location, gid from events join userevent on userevent.eid=events.eid where uid = ?", uid)
+                                .mapToBean(Event.class).list());
+    }
+
+    public Boolean userInEvent(Long uid, Long eid) {
+        return jdbi.withHandle(
+                handle ->
+                        handle.select
+                                ("select eid from userevent where uid = ?", uid)
+                                .mapTo(Long.class).list()).contains(eid);
     }
 
     public void removeUserFromEvent(Long uid, Long eid) {

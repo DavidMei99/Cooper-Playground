@@ -17,7 +17,7 @@ public class UserGroupRelJdbi {
         jdbi.withHandle(
                 handle ->
                         handle.execute(
-                                "create table usergroup (uid bigint, gid bigint);"));
+                                "create table if not exists usergroup (uid bigint, gid bigint);"));
     }
 
     public void addUserGroup(Long uid, Long gid) {
@@ -41,7 +41,7 @@ public class UserGroupRelJdbi {
         return jdbi.withHandle(
                 handle ->
                         handle.select
-                                ("select gid, gname, adminid from groups join usergroup on usergroup.gid=groups.gid where usergroup.uid = ?", uid)
+                                ("select groups.gid, gname, adminid from groups join usergroup on usergroup.gid=groups.gid where usergroup.uid = ?", uid)
                                 .mapToBean(Group.class).list());
     }
 

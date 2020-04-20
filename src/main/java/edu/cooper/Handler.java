@@ -3,7 +3,6 @@ package edu.cooper;
 import edu.cooper.model.*;
 import edu.cooper.*;
 import java.util.List;
-import java.util.Map;
 
 import spark.Request;
 
@@ -79,16 +78,12 @@ public class Handler {
             return "Group does not exist\r\n";
         else if (utemp == null)
             return "User does not exits\r\n";
-        else if(utemp.getGroupAdmin().containsKey(gtemp.getGid()))
+        else if(service.userInGroup(utemp.getUid(), gtemp.getGid()))
             return "You are already in the group\r\n";
         else{
-            utemp.addGroup(gtemp.getGid());
-            gtemp.addUser(utemp.getUid());
-
+            service.addUserGroup(utemp, gtemp);
             return "You are successfully added to group" + " " + gtemp.getGname() + "\r\n";
         }
-
-
     }
 
     public String attendEvent(final Request request){
@@ -100,12 +95,12 @@ public class Handler {
             return "User does not exit\r\n";
         else if (!service.userInGroup(utemp.getUid(), gtemp.getGid()))
             return "User is not in the group " + gtemp.getGname()+"\r\n";
-        Event etemp = gtemp.getEventByEname(request.params(":eventname"));
+        Event etemp = service.getEventByEname(request.params(":eventname"), gtemp.getGid());
         if(etemp == null)
             return "Event does not exist\r\n";
 
-        utemp.attendEvent(etemp);
-        etemp.attendEvent(utemp.getUid());
+        service.addUserEvent(utemp, etemp);
+
         return utemp.getUname() + " successfully attended " + etemp.getEname() + "\r\n";
     }
 
@@ -143,15 +138,16 @@ public class Handler {
             return "User does not exit\r\n";
         else if (gtemp == null)
             return "Group does not exist\r\n";
-        Event etemp = gtemp.getEventByEname(request.params(":eventname"));
+        Event etemp = service.getEventByEname(request.params(":eventname"), gtemp.getGid());
         if (etemp == null)
-            return "Event does not exit\r\n";
+            return "Even t does not exit\r\n";
         else if (!service.isAdminOfGroup(utemp.getUid(), gtemp.getGid()))
             return "User is not admin of the group " + gtemp.getGname() + "\r\n";
 
         String etime = request.params(":time");
         String location = request.params(":location");
         service.editEvent(etemp, etime, location);
+        etemp = service.getEventByEname(request.params(":eventname"), gtemp.getGid());
 
         return "Event " + etemp.getEname() + " will happen at " + etemp.getEtime() + " in " + etemp.getLocation() + "\r\n";
     }
@@ -171,8 +167,7 @@ public class Handler {
         else if (service.userInGroup(utemp2.getUid(), gtemp.getGid()))
             return "Target user is already in group " + gtemp.getGname() + "\r\n";
 
-        utemp2.addGroup(gtemp.getGid());
-        gtemp.addUser(utemp2.getUid());
+        service.addUserGroup(utemp2, gtemp);
 
         return utemp2.getUname() + " is successfully added to the group " + gtemp.getGname() + "\r\n";
     }
@@ -205,7 +200,7 @@ public class Handler {
             return "User does not exit\r\n";
         else if (gtemp == null)
             return "Group does not exist\r\n";
-        Event etemp = gtemp.getEventByEname(request.params(":eventname"));
+        Event etemp = service.getEventByEname(request.params(":eventname"), gtemp.getGid());
         if (etemp == null)
             return "Event does not exit\r\n";
         else if (utemp2 == null)
@@ -217,8 +212,7 @@ public class Handler {
         else if (service.userInEvent(utemp2.getUid(), etemp.getEid()))
             return "Target user is already in event " + etemp.getEname() + "\r\n";
 
-        utemp2.attendEvent(etemp);
-        etemp.attendEvent(utemp2.getUid());
+        service.addUserEvent(utemp2, etemp);
 
         return utemp2.getUname() + " is successfully invited to the event " + etemp.getEname() + "\r\n";
     }
@@ -231,7 +225,7 @@ public class Handler {
             return "User does not exit\r\n";
         else if (gtemp == null)
             return "Group does not exist\r\n";
-        Event etemp = gtemp.getEventByEname(request.params(":eventname"));
+        Event etemp = service.getEventByEname(request.params(":eventname"), gtemp.getGid());
         if (etemp == null)
             return "Event does not exit\r\n";
         else if (utemp2 == null)
@@ -243,8 +237,7 @@ public class Handler {
         else if (!service.userInEvent(utemp2.getUid(), etemp.getEid()))
             return "Target user is not in event " + etemp.getEname() + "\r\n";
 
-        utemp2.removeEvent(etemp);
-        etemp.removeUser(utemp2.getUid());
+        service.removeUserFromEvent(utemp2, etemp);
 
         return utemp2.getUname() + " is successfully removed from the event " + etemp.getEname() + "\r\n";
     }
@@ -270,8 +263,7 @@ public class Handler {
         else if (!service.userInGroup(utemp2.getUid(), gtemp.getGid()))
             return "Target user is not in group " + gtemp.getGname() + "\r\n";
         gtemp.setAdminid(utemp2.getUid());
-        utemp.setAdmin(gtemp.getGid(), false);
-        utemp2.setAdmin(gtemp.getGid(), true);
+        service.setAdmin(gtemp, utemp2);
         return "Successfully transferred admin from " + utemp.getUname() + " to " + utemp2.getUname() + "\r\n";
     }
 

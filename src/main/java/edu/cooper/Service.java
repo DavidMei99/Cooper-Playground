@@ -3,10 +3,7 @@ package edu.cooper;
 import edu.cooper.model.*;
 import edu.cooper.store.*;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Service {
 
@@ -32,13 +29,15 @@ public class Service {
 
     //call groupStore.addGroup and add group to user's group list and set the user to admin
     public Group createGroup(final Handler.CreateGroupRequest createGroupRequest) {
-        return groupStore.addGroup(createGroupRequest);
+        Group gtemp = groupStore.addGroup(createGroupRequest).get();
+        userGroupRel.addUserGroup(createGroupRequest.getAdminid(), gtemp.getGid());
+        return gtemp;
         // userStore.getUser(group.getAdminid()).setAdmin(group.getGid(), true);
         // return group;
     }
 
     public Event createEvent(final Handler.CreateEventRequest createEventRequest) {
-        return eventStore.addEvent(createEventRequest);
+        return eventStore.addEvent(createEventRequest).get();
     }
 
     public List<User> getUserList(){
@@ -57,20 +56,20 @@ public class Service {
         return userStore.getUser(uid);
     }
 
-    public User getUserByUname(String uname) {return userStore.getUserByUname(uname);}
+    public User getUserByUname(String uname) {return userStore.getUserByUname(uname).get();}
 
-    public Group getGroupByGname(String gname) {return groupStore.getGroupByGname(gname);}
+    public Group getGroupByGname(String gname) {return groupStore.getGroupByGname(gname).get();}
 
     //check if user name is valid
     public Boolean isValidUname(String uname){
-        if(userStore.getUserByUname(uname) == null)
+        if(userStore.getUserByUname(uname).isEmpty())
             return true;
         else
             return false;
     }
 
     public Boolean isValidGname(String gname){
-        if(groupStore.getGroupByGname(gname) == null)
+        if(groupStore.getGroupByGname(gname).isEmpty())
             return true;
         else
             return false;
@@ -78,7 +77,7 @@ public class Service {
 
     //check if user exists. if exists, find user's pwd and check if it matches the input
     public Boolean isCorrectPwd(String uname, String pwd){
-        User loginuser = userStore.getUserByUname(uname);
+        User loginuser = userStore.getUserByUname(uname).get();
         if(loginuser == null)
             return false;
         String loginPwd = loginuser.getPwd();
@@ -89,7 +88,7 @@ public class Service {
             return false;
     }
 
-    public Boolean isAdminOfGroup(long uid, Long gid) { return groupStore.getGroup(gid).getAdminid() == uid;}
+    public Boolean isAdminOfGroup(long uid, Long gid) { return groupStore.getGroup(gid).get().getAdminid() == uid;}
 
     public void editEvent(Event event, String etime, String location) {
         // event.setEtime(etime);
@@ -101,9 +100,19 @@ public class Service {
         return userGroupRel.getUserGroupList(uid).contains(gid);
     }
 
-    public Boolean userInEvent(Long uid, Long eid){return userEventRel.getUserEventList(uid).contains(eid); }
+    public Boolean userInEvent(Long uid, Long eid){return userEventRel.userInEvent(uid, eid); }
 
     public List<Group> getUserGroups(Long uid){ return userGroupRel.getUserGroupObjList(uid); }
+
+    public List<Event> getEventsByUname(String uname) {return userEventRel.getUserEventList(userStore.getUserByUname(uname).get().getUid());}
+
+    public void addUserGroup(User user, Group group) {
+        userGroupRel.addUserGroup(user.getUid(), group.getGid());
+    }
+
+    public void addUserEvent(User user, Event event) {
+        userEventRel.addUserEvent(user.getUid(), event.getEid());
+    }
 
     public void removeUserFromGroup(User user, Group group) {
         List<Event> eventList = eventStore.getGroupEvents(group.getGid());
@@ -115,12 +124,20 @@ public class Service {
         userGroupRel.removeUserFromGroup(user.getUid(), group.getGid());
     }
 
-
-
-
+    public void removeUserFromEvent(User user, Event event) {
+        userEventRel.removeUserFromEvent(user.getUid(), event.getEid());
+    }
 
     public Boolean isValidEname(Group gtemp, String ename){
-        return gtemp.getEventByEname(ename) == null;
+        return eventStore.getEventByEname(ename, gtemp.getGid()).isEmpty();
+    }
+
+    public Event getEventByEname(String ename, Long gid){
+        return eventStore.getEventByEname(ename, gid).get();
+    }
+
+    public void setAdmin(Group group, User user){
+        groupStore.updateAdmin(group.getGid(), user.getUid());
     }
 
     /*public List<Group> getUserGroups(User user){
@@ -144,6 +161,4 @@ public class Service {
         }
         return events;
     }*/
-
-    public List<Event> getEventsByUname(String uname) {return userStore.getUserByUname(uname).getEventList();}
 }

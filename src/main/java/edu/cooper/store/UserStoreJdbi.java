@@ -5,6 +5,7 @@ import edu.cooper.model.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class UserStoreJdbi implements UserStore{
 
@@ -18,7 +19,7 @@ public class UserStoreJdbi implements UserStore{
         jdbi.withHandle(
                 handle ->
                         handle.execute(
-                                "create table users (uid bigint auto_increment, uname varchar(255), pwd varchar(255), email varchar(255));"));
+                                "create table if not exists users (uid bigint auto_increment, uname varchar(255), pwd varchar(255), email varchar(255));"));
     }
 
     @Override
@@ -52,11 +53,11 @@ public class UserStoreJdbi implements UserStore{
     }
 
     @Override
-    public User getUserByUname(String uname) {
+    public Optional<User> getUserByUname(String uname) {
         return jdbi.withHandle(
                 handle ->
                         handle.select
-                                ("select uid, uname, pwd, email from users where uname = ?", uname).mapToBean(User.class).one());
+                                ("select uid, uname, pwd, email from users where uname = ?", uname).mapToBean(User.class).findOne());
     }
 }
 

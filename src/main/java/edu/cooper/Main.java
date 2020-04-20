@@ -55,6 +55,7 @@ public class Main {
                 (req, res) -> handler.removeUserFromGroup(req));
 
         //create event
+        //creator is not default in created event !!!
         Spark.post("/user/:username/group/:groupname/event/:eventname/create",
                 (req, res) -> handler.createEvent(req));
 
