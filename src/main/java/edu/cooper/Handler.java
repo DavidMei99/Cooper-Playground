@@ -1,5 +1,6 @@
 package edu.cooper;
 
+import com.google.gson.Gson;
 import edu.cooper.model.*;
 import edu.cooper.*;
 import java.util.List;
@@ -9,9 +10,11 @@ import spark.Request;
 public class Handler {
 
     private final Service service;
+    private final Gson gson;
 
-    public Handler(Service service) {
+    public Handler(Service service, Gson gson) {
         this.service = service;
+        this.gson = gson;
     }
 
     //create new user object with unique username and pwd

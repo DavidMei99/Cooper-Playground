@@ -1,16 +1,17 @@
 package edu.cooper.model;
 
+import com.google.gson.annotations.Expose;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class User {
-    private Long uid;
+    @Expose private Long uid;
     // private static Long count = 0L;
-    private String uname;
-    private String pwd;
-    private String email;
+    @Expose private String uname;
+    @Expose private String pwd;
+    @Expose private String email;
 
     /*public Boolean isAdmin(Long gid){
         if (groupAdmin.get(gid) == null)

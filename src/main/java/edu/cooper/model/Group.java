@@ -1,12 +1,13 @@
 package edu.cooper.model;
 
 import java.util.*;
+import com.google.gson.annotations.Expose;
 
 public class Group {
-    private String gname;
-    private Long gid;
+    @Expose private String gname;
+    @Expose private Long gid;
     // private static Long count = 0L;
-    private Long adminid;
+    @Expose private Long adminid;
 
     public Group(Long gid, String gname, Long adminid){
         this.gname = gname;

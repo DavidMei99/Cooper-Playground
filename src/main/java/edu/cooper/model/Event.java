@@ -1,16 +1,17 @@
 package edu.cooper.model;
 
+import com.google.gson.annotations.Expose;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class Event {
-    private Long eid;
+    @Expose private Long eid;
     // private static Long count = 0L;
-    private String ename;
-    private String etime;
-    private String location;
-    private Long groupId;
+    @Expose private String ename;
+    @Expose private String etime;
+    @Expose private String location;
+    @Expose private Long groupId;
 
     public Event(Long eid, String ename, Long groupId){
         this.eid = eid;
