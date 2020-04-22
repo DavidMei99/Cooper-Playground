@@ -140,6 +140,8 @@ public class Service {
         groupStore.updateAdmin(group.getGid(), user.getUid());
     }
 
+    public Group getGroup(Long gid) { return groupStore.getGroup(gid).get();}
+
     /*public List<Group> getUserGroups(User user){
         List<Group> temp = new ArrayList<>();
         Iterator<Map.Entry<Long, Boolean>> itr = user.getGroupAdmin().entrySet().iterator();

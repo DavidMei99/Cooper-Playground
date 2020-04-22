@@ -3,9 +3,15 @@ package edu.cooper;
 import com.google.gson.Gson;
 import edu.cooper.model.*;
 import edu.cooper.*;
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
-
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import spark.Request;
+
+import javax.servlet.ServletOutputStream;
 
 public class Handler {
 
@@ -19,11 +25,13 @@ public class Handler {
 
     //create new user object with unique username and pwd
     //add created user object to UserStore
-    public String createUser(final Request request){
+    public String createUser(final Request request) throws IOException {
         // User user = new User(request.params(":username"), request.params(":password"), request.params(":email"));
-        CreateUserRequest user = new CreateUserRequest(request.params(":username"), request.params(":password"), request.params(":email"));
+        CreateUserRequest user = gson.fromJson(request.body(), CreateUserRequest.class);
+        //CreateUserRequest user = new CreateUserRequest(request.params("userName"), request.params("passWord"), request.params("email"));
         if(service.isValidUname(user.getUname())) {
             service.createUser(user);
+
             return "Successfully registered user " + user.getUname() + "\r\n";
         }
         return "Username already exists\r\n";
@@ -32,11 +40,15 @@ public class Handler {
     //check if username exist
     //return login states
    public String loginUser(final Request request){
-       User utemp = service.getUserByUname(request.params(":username"));
+        //request.session().attribute("currentUser", );
+       loginUser loginuser = gson.fromJson(request.body(), loginUser.class);
+       User utemp = service.getUserByUname(loginuser.uname);
        if (utemp == null)
            return "User does not exits\r\n";
-       if(service.isCorrectPwd(utemp.getUname(), request.params(":password")))
+       if(service.isCorrectPwd(utemp.getUname(), loginuser.pwd)){
+           request.session().attribute("currentUser", utemp.getUname());
            return "Login Success\r\n";
+       }
        else
            return "Login Failure: The username or password is not correct\r\n";
    }
@@ -44,10 +56,13 @@ public class Handler {
     //create new group object with groupname and username
     //call service.createGroup
     public String createGroup(final Request request){
-        User utemp = service.getUserByUname(request.params(":username"));
+        String uname = request.session().attribute("currentUser");
+        User utemp = service.getUserByUname(uname);
         if (utemp == null)
             return "User does not exits\r\n";
-        CreateGroupRequest group = new CreateGroupRequest(request.params(":groupname"),utemp.getUid());
+        //CreateGroupRequest group = new CreateGroupRequest(request.params(":groupname"),utemp.getUid());
+        CreateGroupRequest group = gson.fromJson(request.body(), CreateGroupRequest.class);
+        group.setAdminid(utemp.getUid());
         if(service.isValidGname(group.getGname())) {
             service.createGroup(group);
             return "Successfully created the group " + group.getGname() + " by " + utemp.getUname() + "\r\n";
@@ -57,15 +72,17 @@ public class Handler {
     }
 
     public String createEvent(final Request request){
-        User utemp = service.getUserByUname(request.params(":username"));
-        Group gtemp = service.getGroupByGname(request.params(":groupname"));
-        String ename = request.params(":eventname");
+        User utemp = service.getUserByUname(request.session().attribute("currentUser"));
+
+        eventCreate etemp = gson.fromJson(request.body(), eventCreate.class);
+        Group gtemp = service.getGroupByGname(etemp.gname);
+        String ename = etemp.ename;
         if(gtemp == null)
             return "Group does not exist\r\n";
         else if (utemp == null)
             return "User does not exits\r\n";
         else if (gtemp.getAdminid() == utemp.getUid() && service.isValidEname(gtemp, ename)){
-            CreateEventRequest event = new CreateEventRequest(ename, "", "", gtemp.getGid());
+            CreateEventRequest event = new CreateEventRequest(etemp.ename,etemp.etime,etemp.location, gtemp.getGid());
             service.createEvent(event);
             return "Successfully created the event " + event.getEname() + " in " + gtemp.getGname() +
                     " by " + utemp.getUname() + "\r\n";
@@ -118,7 +135,7 @@ public class Handler {
     }
 
     public List<Group> getUserGroupsByUname(final Request request){
-        User utemp = service.getUserByUname(request.params(":username"));
+        User utemp = service.getUserByUname(request.session().attribute("currentUser"));
         return service.getUserGroups(utemp.getUid());
     }
 
@@ -295,7 +312,7 @@ public class Handler {
 
     public class CreateGroupRequest {
         private final String gname;
-        private final Long adminid;
+        private Long adminid;
 
         public CreateGroupRequest(String gname, Long adminid) {
             this.gname = gname;
@@ -309,20 +326,28 @@ public class Handler {
         public Long getAdminid() {
             return adminid;
         }
+
+        public void setAdminid(Long adminid) { this.adminid = adminid;}
     }
 
     public class CreateEventRequest {
-        private final String ename;
-        private final String etime;
-        private final String location;
-        private final Long groupId;
+        private String ename;
+        private String etime;
+        private String location;
+        private Long groupId;
 
         public CreateEventRequest(String ename, String etime, String location, Long groupId) {
-            this.ename = ename;
-            this.etime = etime;
-            this.location = location;
-            this.groupId = groupId;
+            this.ename=ename;
+            this.etime=etime;
+            this.location=location;
+            this.groupId=groupId;
+
         }
+        public void setEname(String ename) {this.ename = ename;}
+        public void setEtime(String ename) {this.etime = etime;}
+        public void setLocation(String location) {this.location = location;}
+        public void setGroupId(Long groupId) {this.groupId = groupId;}
+
 
         public String getEname() {
             return ename;
@@ -335,6 +360,23 @@ public class Handler {
         public String getLocation() { return location; }
 
         public Long getGroupId() { return groupId; }
+    }
+
+    public class loginUser{
+        public String uname = "";
+        public String pwd = "";
+        public loginUser(){
+        }
+    }
+
+    public class eventCreate{
+        public String ename = "";
+        public String etime = "";
+        public String location = "";
+        public String gname = "";
+        public eventCreate(){
+
+        }
     }
 
 }
