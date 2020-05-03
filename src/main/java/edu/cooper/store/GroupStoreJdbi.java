@@ -41,6 +41,7 @@ public class GroupStoreJdbi implements GroupStore{
                                 .executeAndReturnGeneratedKeys("gid")
                                 .mapToBean(Group.class)
                                 .findOne());
+
     }
 
     /*@Override

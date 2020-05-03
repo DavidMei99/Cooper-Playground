@@ -7,21 +7,21 @@
     </div>
     <div class="form-group">
         <label for="etime">Enter Event Time</label>
-        <input type="text" class="form-control" id="etime" name="etime">
+        <input type="date" class="form-control" id="etime" name="etime">
     </div>
     <div class="form-group">
         <label for="location">Enter the Event Location</label>
         <input type="text" class="form-control" id="location" name="location">
     </div>
     <div class="form-group">
-        <label for="gname">Enter the Group ID</label>
+        <label for="gname">Enter the Group Name</label>
         <input type="text" class="form-control" id="gname" name="gname">
     </div>
     <button type="submit" class="btn btn-default">Submit</button>
 </form>
 
 
-<!-- Simple JS Function to convert the data into JSON and Pass it as ajax Call --!>
+<!-- Simple JS Function to convert the data into JSON and Pass it as ajax Call -->
 <script>
     $(function() {
         $('form').submit(function(e) {

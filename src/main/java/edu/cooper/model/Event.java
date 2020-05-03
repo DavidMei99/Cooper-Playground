@@ -13,11 +13,11 @@ public class Event {
     @Expose private String location;
     @Expose private Long groupId;
 
-    public Event(Long eid, String ename, Long groupId){
+    public Event(Long eid, String ename, String etime, String location, Long groupId){
         this.eid = eid;
         this.ename = ename;
-        this.etime = "";
-        this.location = "";
+        this.etime = etime;
+        this.location = location;
         this.groupId = groupId;
     }
 

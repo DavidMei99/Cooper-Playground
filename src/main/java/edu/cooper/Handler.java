@@ -44,7 +44,7 @@ public class Handler {
        loginUser loginuser = gson.fromJson(request.body(), loginUser.class);
        User utemp = service.getUserByUname(loginuser.uname);
        if (utemp == null)
-           return "User does not exits\r\n";
+           return "User does not exist\r\n";
        if(service.isCorrectPwd(utemp.getUname(), loginuser.pwd)){
            request.session().attribute("currentUser", utemp.getUname());
            return "Login Success\r\n";
@@ -76,6 +76,7 @@ public class Handler {
 
         eventCreate etemp = gson.fromJson(request.body(), eventCreate.class);
         Group gtemp = service.getGroupByGname(etemp.gname);
+        //System.out.println(gtemp.getGid());
         String ename = etemp.ename;
         if(gtemp == null)
             return "Group does not exist\r\n";
@@ -83,6 +84,7 @@ public class Handler {
             return "User does not exits\r\n";
         else if (gtemp.getAdminid() == utemp.getUid() && service.isValidEname(gtemp, ename)){
             CreateEventRequest event = new CreateEventRequest(etemp.ename,etemp.etime,etemp.location, gtemp.getGid());
+            System.out.println(event.getGroupId());
             service.createEvent(event);
             return "Successfully created the event " + event.getEname() + " in " + gtemp.getGname() +
                     " by " + utemp.getUname() + "\r\n";
@@ -92,8 +94,9 @@ public class Handler {
     }
 
     public String attendGroup(final Request request){
-        User utemp = service.getUserByUname(request.params(":username"));
-        Group gtemp = service.getGroupByGname(request.params(":groupname"));
+        User utemp = service.getUserByUname(request.session().attribute("currentUser"));
+        groupAttend groupattend = gson.fromJson(request.body(), groupAttend.class);
+        Group gtemp = service.getGroupByGname(groupattend.gname);
         if(gtemp == null)
             return "Group does not exist\r\n";
         else if (utemp == null)
@@ -107,18 +110,22 @@ public class Handler {
     }
 
     public String attendEvent(final Request request){
-        User utemp = service.getUserByUname(request.params(":username"));
-        Group gtemp = service.getGroupByGname(request.params(":groupname"));
+        System.out.println(request.body());
+        User utemp = service.getUserByUname(request.session().attribute("currentUser"));
+        eventAttend eventattend = gson.fromJson(request.body(), eventAttend.class);
+        Group gtemp = service.getGroupByGname(eventattend.gname);
         if(gtemp == null)
             return "Group does not exist\r\n";
         else if (utemp == null)
             return "User does not exit\r\n";
         else if (!service.userInGroup(utemp.getUid(), gtemp.getGid()))
             return "User is not in the group " + gtemp.getGname()+"\r\n";
-        Event etemp = service.getEventByEname(request.params(":eventname"), gtemp.getGid());
+        Event etemp = service.getEventByEname(eventattend.ename, gtemp.getGid());
         if(etemp == null)
             return "Event does not exist\r\n";
-
+        if (service.userInEvent(utemp.getUid(), etemp.getEid())){
+            return "You are already in event " + etemp.getEname() + "\r\n";
+        }
         service.addUserEvent(utemp, etemp);
 
         return utemp.getUname() + " successfully attended " + etemp.getEname() + "\r\n";
@@ -148,7 +155,13 @@ public class Handler {
     }
 
     public List<Event> getUserEventsByUname(final Request request){
-        return service.getEventsByUname(request.params(":username"));
+        return service.getEventsByUname(request.session().attribute("currentUser"));
+    }
+
+    public List<Event> getEventsByGname(final Request request){
+        Long gid = service.getGroupByGname(request.params("gname")).getGid();
+        System.out.println(gid);
+        return service.getEventsByGid(gid);
     }
 
     public String editEvent(final Request request) {
@@ -375,6 +388,33 @@ public class Handler {
         public String location = "";
         public String gname = "";
         public eventCreate(){
+
+        }
+    }
+
+    public class groupAttend{
+        public String gname = "";
+
+        public groupAttend(){
+
+        }
+
+    }
+
+    public class eventAttend{
+        public String gname = "";
+        public String ename = "";
+
+        public eventAttend(){
+
+        }
+
+    }
+
+    public class groupGname {
+        public String gname = "";
+
+        public groupGname() {
 
         }
     }

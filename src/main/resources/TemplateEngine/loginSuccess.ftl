@@ -20,11 +20,15 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/">Home</a></li>
+                <li class="active"><a href="/loginSuccess">Home</a></li>
                 <!--<li class="active"><a href="loginSuccess"></a></li>-->
                 <li><a href="createGroup">Create Group</a></li>
                 <li><a href="getMyGroup">My Groups</a></li>
+                <li><a href="attendGroup">Attend Group</a></li>
                 <li><a href="createEvent">Create Event</a></li>
+                <li><a href="getMyEvent">My Events</a></li>
+                <li><a href="attendEvent">Attend Event</a></li>
+                <li class="active"><a href="/">Logout</a></li>
 
             </ul>
         </div><!--/.nav-collapse -->

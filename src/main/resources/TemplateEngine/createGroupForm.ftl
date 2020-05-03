@@ -2,7 +2,7 @@
 <p id="status"></p>
 <form action="" method="POST" role="form">
     <div class="form-group">
-        <label for="gname">Username</label>
+        <label for="gname">Enter Group Name</label>
         <input type="text" class="form-control" id="gname" name="gname" placeholder="Enter Group Name">
     </div>
     <button type="submit" class="btn btn-default">Submit</button>

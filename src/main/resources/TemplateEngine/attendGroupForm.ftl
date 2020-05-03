@@ -1,21 +1,9 @@
-<h2>Create Event</h2>
+<h2>Attend Group</h2>
 <p id="status"></p>
 <form action="" method="POST" role="form">
     <div class="form-group">
-        <label for="ename">Event Name</label>
-        <input type="text" class="form-control" id="ename" name="ename" placeholder="Enter Event Name">
-    </div>
-    <div class="form-group">
-        <label for="etime">Enter Event Time</label>
-        <input type="date" class="form-control" id="etime" name="etime">
-    </div>
-    <div class="form-group">
-        <label for="location">Enter the Event Location</label>
-        <input type="text" class="form-control" id="location" name="location">
-    </div>
-    <div class="form-group">
-        <label for="gname">Enter the Group Name</label>
-        <input type="text" class="form-control" id="gname" name="gname">
+        <label for="gname">Enter the Group you want to attend</label>
+        <input type="text" class="form-control" id="gname" name="gname" placeholder="Enter Group Name">
     </div>
     <button type="submit" class="btn btn-default">Submit</button>
 </form>
@@ -38,11 +26,11 @@
             // Ajax Call
             $.ajax({
                 type: "POST",
-                url: "createEvent",
+                url: "attendGroup",
                 data: json,
                 dataType: "json",
                 success : function() {
-                    $("#status").text("Event SuccesFully Added");
+                    $("#status").text("Group SuccesFully Added");
                     this_.find('input,select').val('');
                 },
                 error : function(e) {

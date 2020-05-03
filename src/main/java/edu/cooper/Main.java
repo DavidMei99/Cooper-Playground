@@ -132,7 +132,28 @@ public class Main {
 
 
         //attend group
-        Spark.put("/user/:username/group/:groupname/attend", (req, res) -> handler.attendGroup(req), jsonTransformer); // pass
+        //Spark.put("/user/:username/group/:groupname/attend", (req, res) -> handler.attendGroup(req), jsonTransformer); // pass
+
+        Spark.get("/attendGroup", (request, response) -> {
+            Map<String, Object> viewObjects = new HashMap<String, Object>();
+            viewObjects.put("templateName", "attendGroupForm.ftl");
+            return new ModelAndView(viewObjects, "loginSuccess.ftl");
+        }, new FreeMarkerEngine());
+
+        Spark.post("/attendGroup", (request, response) -> {
+            return handler.attendGroup(request);
+        });
+
+        Spark.get("/attendEvent", (request, response) -> {
+            Map<String, Object> viewObjects = new HashMap<String, Object>();
+            viewObjects.put("templateName", "attendEventForm.ftl");
+            return new ModelAndView(viewObjects, "loginSuccess.ftl");
+        }, new FreeMarkerEngine());
+
+        Spark.post("/attendEvent", (request, response) -> {
+            return handler.attendEvent(request);
+        });
+
 
         //add user to group
         Spark.put("/user/:username/group/:groupname/user/:username2/invite",
@@ -180,6 +201,26 @@ public class Main {
             response.status(200);
             return gson.toJson(handler.getUserGroupsByUname(request));
         });
+
+        Spark.get("getMyEvent", (request, response) -> {
+            response.status(200);
+            Map<String, Object> viewObjects = new HashMap<String, Object>();
+            viewObjects.put("templateName", "showMyEvent.ftl");
+            return new ModelAndView(viewObjects, "loginSuccess.ftl");
+        }, new FreeMarkerEngine());
+
+        get("/getEvents", (request, response) -> {
+            response.status(200);
+            return gson.toJson(handler.getUserEventsByUname(request));
+        });
+
+        get("/getGroupEvents/:gname", (request, response) -> {
+            response.status(200);
+            System.out.println("used");
+            System.out.println(request.params("gname"));
+            return gson.toJson(handler.getEventsByGname(request));
+        });
+
 
         //get user's groups (for user by uname)
         Spark.get("/user/uname/:username/group/view", (req, res) -> handler.getUserGroupsByUname(req), jsonTransformer); // pass

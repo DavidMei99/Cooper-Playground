@@ -34,7 +34,7 @@ public class UserEventRelJdbi {
         return jdbi.withHandle(
                 handle ->
                         handle.select
-                                ("select events.eid, ename, etime, location, gid from events join userevent on userevent.eid=events.eid where uid = ?", uid)
+                                ("select events.eid, ename, etime, location, groupId from events join userevent on userevent.eid=events.eid where uid = ?", uid)
                                 .mapToBean(Event.class).list());
     }
 

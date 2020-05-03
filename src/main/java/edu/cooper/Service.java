@@ -3,6 +3,7 @@ package edu.cooper;
 import edu.cooper.model.*;
 import edu.cooper.store.*;
 
+import java.sql.SQLOutput;
 import java.util.*;
 
 public class Service {
@@ -56,9 +57,12 @@ public class Service {
         return userStore.getUser(uid);
     }
 
-    public User getUserByUname(String uname) {return userStore.getUserByUname(uname).get();}
+    public User getUserByUname(String uname) {
+        User utemp = userStore.getUserByUname(uname).orElse(null);
+        return utemp;
+    }
 
-    public Group getGroupByGname(String gname) {return groupStore.getGroupByGname(gname).get();}
+    public Group getGroupByGname(String gname) {return groupStore.getGroupByGname(gname).orElse(null);}
 
     //check if user name is valid
     public Boolean isValidUname(String uname){
@@ -106,6 +110,8 @@ public class Service {
 
     public List<Event> getEventsByUname(String uname) {return userEventRel.getUserEventList(userStore.getUserByUname(uname).get().getUid());}
 
+    public List<Event> getEventsByGid(Long gid){return eventStore.getGroupEvents(gid);}
+
     public void addUserGroup(User user, Group group) {
         userGroupRel.addUserGroup(user.getUid(), group.getGid());
     }
@@ -133,7 +139,7 @@ public class Service {
     }
 
     public Event getEventByEname(String ename, Long gid){
-        return eventStore.getEventByEname(ename, gid).get();
+        return eventStore.getEventByEname(ename, gid).orElse(null);
     }
 
     public void setAdmin(Group group, User user){
