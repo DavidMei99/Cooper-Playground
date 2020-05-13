@@ -54,4 +54,12 @@ public class UserGroupRelJdbi {
                                 .execute());
     }
 
+    public List<User> getGroupUserObjList(Long gid) {
+        return jdbi.withHandle(
+                handle ->
+                        handle.select
+                                ("select users.uid, uname, pwd, email from users join usergroup on usergroup.uid=users.uid where usergroup.gid = ?", gid)
+                                .mapToBean(User.class).list());
+    }
+
 }

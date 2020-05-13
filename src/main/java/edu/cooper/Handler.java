@@ -2,16 +2,15 @@ package edu.cooper;
 
 import com.google.gson.Gson;
 import edu.cooper.model.*;
-import edu.cooper.*;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import spark.Request;
 
-import javax.servlet.ServletOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.*;
+import javax.mail.*;
+import javax.mail.internet.*;
+import javax.activation.*;
+import spark.Request;
 
 public class Handler {
 
@@ -146,6 +145,18 @@ public class Handler {
         return service.getUserGroups(utemp.getUid());
     }
 
+    public List<GroupLess> getUserGroupsByUnameLess(final Request request){
+        User utemp = service.getUserByUname(request.session().attribute("currentUser"));
+        List<Group> glist = service.getUserGroups(utemp.getUid());
+        List<GroupLess> glesslist = new ArrayList<>();
+        for (Group group: glist) {
+            GroupLess gtemp = new GroupLess(group.getGname(), service.getUser(group.getAdminid()).getUname());
+            glesslist.add(gtemp);
+        }
+        return glesslist;
+
+    }
+
     public List<Group> getGroupList(final Request request){
         return service.getGroupList();
     }
@@ -158,10 +169,28 @@ public class Handler {
         return service.getEventsByUname(request.session().attribute("currentUser"));
     }
 
+    public List<EventLess> getUserEventsByUnameLess(final Request request){
+        List<Event> elist = service.getEventsByUname(request.session().attribute("currentUser"));
+
+        List<EventLess> elesslist = new ArrayList<>();
+        for (Event event: elist) {
+            EventLess etemp = new EventLess(event.getEname(), event.getEtime(), event.getLocation(),
+                    service.getGroup(event.getGroupId()).getGname());
+            elesslist.add(etemp);
+        }
+        return elesslist;
+
+    }
+
     public List<Event> getEventsByGname(final Request request){
         Long gid = service.getGroupByGname(request.params("gname")).getGid();
         System.out.println(gid);
         return service.getEventsByGid(gid);
+    }
+
+    public List<User> getUsersByGname(final Request request){
+        Long gid = service.getGroupByGname(request.params("gname")).getGid();
+        return service.getGroupUsers(gid);
     }
 
     public String editEvent(final Request request) {
@@ -186,9 +215,10 @@ public class Handler {
     }
 
     public String addUserToGroup(final Request request) {
-        User utemp = service.getUserByUname(request.params(":username"));
-        Group gtemp = service.getGroupByGname(request.params(":groupname"));
-        User utemp2 = service.getUserByUname(request.params(":username2"));
+        User utemp = service.getUserByUname(request.session().attribute("currentUser"));
+        addToGroup addtogroup = gson.fromJson(request.body(), addToGroup.class);
+        Group gtemp = service.getGroupByGname(addtogroup.gname);
+        User utemp2 = service.getUserByUname(addtogroup.uname);
         if (utemp == null)
             return "User does not exit\r\n";
         else if (gtemp == null)
@@ -245,7 +275,41 @@ public class Handler {
         else if (service.userInEvent(utemp2.getUid(), etemp.getEid()))
             return "Target user is already in event " + etemp.getEname() + "\r\n";
 
-        service.addUserEvent(utemp2, etemp);
+        //service.addUserEvent(utemp2, etemp);
+
+        String host="localhost";
+        final String user="xxx.com";//change accordingly
+        final String password="xxx";//change accordingly
+
+        String to="xxx.com";//change accordingly
+
+        //Get the session object
+        Properties props = new Properties();
+        props.put("mail.smtp.host",host);
+        props.put("mail.smtp.auth", "true");
+
+        Session session = Session.getDefaultInstance(props,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(user,password);
+                    }
+                });
+
+        //Compose the message
+        try {
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(user));
+            message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));
+            message.setSubject("javatpoint");
+            message.setText("This is simple program of sending email using JavaMail API");
+
+            //send the message
+            Transport.send(message);
+
+            System.out.println("message sent successfully...");
+
+        } catch (MessagingException e) {e.printStackTrace();}
+
 
         return utemp2.getUname() + " is successfully invited to the event " + etemp.getEname() + "\r\n";
     }
@@ -282,13 +346,14 @@ public class Handler {
     }
 
     public String transferAdmin(final Request request) {
-        User utemp = service.getUserByUname(request.params(":username"));
-        User utemp2 = service.getUserByUname(request.params(":username2"));
-        Group gtemp = service.getGroupByGname(request.params(":groupname"));
+        User utemp = service.getUserByUname(request.session().attribute("currentUser"));
+        addToGroup transferadmin = gson.fromJson(request.body(), addToGroup.class);
+        User utemp2 = service.getUserByUname(transferadmin.uname);
+        Group gtemp = service.getGroupByGname(transferadmin.gname);
         if (utemp == null)
-            return "User does not exit\r\n";
+            return "User does not exist\r\n";
         else if (utemp2 == null)
-            return "Target user does not exit\r\n";
+            return "Target user does not exist\r\n";
         else if (gtemp == null)
             return "Group does not exist\r\n";
         else if (!service.isAdminOfGroup(utemp.getUid(), gtemp.getGid()))
@@ -417,6 +482,38 @@ public class Handler {
         public groupGname() {
 
         }
+    }
+
+    public class addToGroup {
+        public String gname = "";
+        public String uname = "";
+        public addToGroup(){
+
+        }
+
+    }
+
+    public class GroupLess {
+        public String GroupName = "";
+        public String adminName = "";
+        public GroupLess(String GroupName, String adminName){
+            this.GroupName = GroupName;
+            this.adminName = adminName;
+        }
+    }
+
+    public class EventLess {
+        public String eventName = "";
+        public String eventTime = "";
+        public String eventLocation = "";
+        public String groupName = "";
+        public EventLess(String eventName, String eventTime, String eventLocation, String groupName){
+            this.eventName = eventName;
+            this.eventTime = eventTime;
+            this.eventLocation = eventLocation;
+            this.groupName = groupName;
+        }
+
     }
 
 }

@@ -16,10 +16,10 @@ public class EventStoreJdbi implements EventStore {
     }
 
     public void populateDb() {
-        jdbi.withHandle(
-                handle ->
-                        handle.execute(
-                                "drop table if exists events"));
+//        jdbi.withHandle(
+//                handle ->
+//                        handle.execute(
+//                                "drop table if exists events"));
 
         jdbi.withHandle(
                 handle ->

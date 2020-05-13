@@ -12,7 +12,7 @@
  	<script src="js/awesomeTable.js" type="text/javascript"></script>
  	<script>
  		$( document ).ready(function() {
- 			$.getJSON('/getGroups',function(json){
+ 			$.getJSON('/getGroupsLess',function(json){
     			if ( json.length == 0 ) {
         			console.log("NO DATA!");
         			$(".groupTable").text("No Groups Found");

@@ -30,12 +30,10 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/loginSuccess">Home</a></li>
                 <!--<li class="active"><a href="loginSuccess"></a></li>-->
-
-
                 <li class="active"><a href="/loginGroup">Group</a></li>
-                <li class="active"><a href="/loginEvent">Event</a></li>
-
-
+                <li><a href="createEvent">Create Event</a></li>
+                <li><a href="getMyEvent">My Events</a></li>
+                <li><a href="attendEvent">Attend Event</a></li>
                 <li class="active"><a href="/">Logout</a></li>
 
             </ul>

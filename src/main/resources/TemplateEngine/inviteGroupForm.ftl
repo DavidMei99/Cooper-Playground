@@ -1,23 +1,22 @@
-<h2>Attend Event</h2>
+<h2>Invite New Member</h2>
 <p id="status"></p>
-
 <form action="" method="POST" role="form">
+
+
     <div class="form-group">
-        <label for="gname">Enter the Group where the event happens</label>
-        <select onchange="change()" type="text" class="form-control" id="gname" name="gname" placeholder="Enter Group Name">
+        <label for="gname">Select the Group you want to invite member to</label>
+        <select type="text" class="form-control" id="gname" name="gname" placeholder="Enter Group Name">
             <option value="">-- Select Group --</option>
         </select>
     </div>
     <div class="form-group">
-        <label for="ename">Enter the Event you want to attend</label>
-        <select type="text" class="form-control" id="ename" name="ename" placeholder="Enter Events Name">
-            <option value="">-- Select Event --</option>
-        </select>
+        <label for="uname">Enter the User you want to invite</label>
+        <input type="text" class="form-control" id="uname" name="uname" placeholder="Enter User Name">
     </div>
+
 
     <button type="submit" class="btn btn-default">Submit</button>
 </form>
-
 
 <script>
     $.getJSON('/getGroups', function (json) {
@@ -26,20 +25,6 @@
             $('#gname').append('<option value="' + value.gname + '">' + value.gname + '</option>');
         });
     });
-</script>
-
-<script>
-    function change(){
-        $.getJSON('/getGroupEvents/' + $('#gname').val() , function (json) {
-            $('#ename').empty();
-            $('#ename').append('<option value="">-- Select Event --</option>');
-
-            $.each(json, function (index, value) {
-                // APPEND OR INSERT DATA TO SELECT ELEMENT.
-                $('#ename').append('<option value="' + value.ename + '">' + value.ename + '</option>');
-            });
-        });
-    }
 </script>
 
 
@@ -60,11 +45,11 @@
             // Ajax Call
             $.ajax({
                 type: "POST",
-                url: "attendEvent",
+                url: "inviteGroup",
                 data: json,
                 dataType: "json",
                 success : function() {
-                    $("#status").text("Event SuccesFully Joined");
+                    $("#status").text("Group SuccesFully Added");
                     this_.find('input,select').val('');
                 },
                 error : function(e) {

@@ -148,6 +148,9 @@ public class Service {
 
     public Group getGroup(Long gid) { return groupStore.getGroup(gid).get();}
 
+    public List<User> getGroupUsers(Long gid) { return userGroupRel.getGroupUserObjList(gid);}
+
+
     /*public List<Group> getUserGroups(User user){
         List<Group> temp = new ArrayList<>();
         Iterator<Map.Entry<Long, Boolean>> itr = user.getGroupAdmin().entrySet().iterator();

@@ -1,23 +1,24 @@
-<h2>Attend Event</h2>
+<h2>Transfer Admin</h2>
 <p id="status"></p>
-
 <form action="" method="POST" role="form">
+
+
     <div class="form-group">
-        <label for="gname">Enter the Group where the event happens</label>
+        <label for="gname">Enter the Group to change admin</label>
         <select onchange="change()" type="text" class="form-control" id="gname" name="gname" placeholder="Enter Group Name">
             <option value="">-- Select Group --</option>
         </select>
     </div>
     <div class="form-group">
-        <label for="ename">Enter the Event you want to attend</label>
-        <select type="text" class="form-control" id="ename" name="ename" placeholder="Enter Events Name">
-            <option value="">-- Select Event --</option>
+        <label for="uname">Enter the User</label>
+        <select type="text" class="form-control" id="uname" name="uname" placeholder="Enter User Name">
+            <option value="">-- Select User --</option>
         </select>
     </div>
 
+
     <button type="submit" class="btn btn-default">Submit</button>
 </form>
-
 
 <script>
     $.getJSON('/getGroups', function (json) {
@@ -30,13 +31,13 @@
 
 <script>
     function change(){
-        $.getJSON('/getGroupEvents/' + $('#gname').val() , function (json) {
-            $('#ename').empty();
-            $('#ename').append('<option value="">-- Select Event --</option>');
+        $.getJSON('/getGroupUsers/' + $('#gname').val() , function (json) {
+            $('#uname').empty();
+            $('#uname').append('<option value="">-- Select User --</option>');
 
             $.each(json, function (index, value) {
                 // APPEND OR INSERT DATA TO SELECT ELEMENT.
-                $('#ename').append('<option value="' + value.ename + '">' + value.ename + '</option>');
+                $('#uname').append('<option value="' + value.uname + '">' + value.uname + '</option>');
             });
         });
     }
@@ -60,11 +61,11 @@
             // Ajax Call
             $.ajax({
                 type: "POST",
-                url: "attendEvent",
+                url: "transferAdmin",
                 data: json,
                 dataType: "json",
                 success : function() {
-                    $("#status").text("Event SuccesFully Joined");
+                    $("#status").text("Admin SuccesFully Changed");
                     this_.find('input,select').val('');
                 },
                 error : function(e) {

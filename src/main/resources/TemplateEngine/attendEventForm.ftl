@@ -5,6 +5,7 @@
     <div class="form-group">
         <label for="gname">Enter the Group where the event happens</label>
         <select onchange="change()" type="text" class="form-control" id="gname" name="gname" placeholder="Enter Group Name">
+            <option value="">-- Select Group --</option>
         </select>
     </div>
     <div class="form-group">
@@ -17,9 +18,6 @@
     <button type="submit" class="btn btn-default">Submit</button>
 </form>
 
-<p id="debug">
-    12345
-</p>
 
 <script>
     $.getJSON('/getGroups', function (json) {
@@ -32,7 +30,6 @@
 
 <script>
     function change(){
-        $('#debug').append('54321');
         $.getJSON('/getGroupEvents/' + $('#gname').val() , function (json) {
             $('#ename').empty();
             $('#ename').append('<option value="">-- Select Event --</option>');

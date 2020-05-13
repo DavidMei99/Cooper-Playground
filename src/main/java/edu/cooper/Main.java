@@ -105,6 +105,24 @@ public class Main {
             return new ModelAndView(viewObjects, "loginSuccess.ftl");
         }, new FreeMarkerEngine());
 
+        Spark.get("/loginGroup", (request, response) -> {
+            Map<String, Object> viewObjects = new HashMap<String, Object>();
+            String uname = request.session().attribute("currentUser");
+            viewObjects.put("title", "Welcome to your Groups, "+uname);
+            //viewObjects.put("name", uname);
+            viewObjects.put("templateName", "home.ftl");
+            return new ModelAndView(viewObjects, "loginGroup.ftl");
+        }, new FreeMarkerEngine());
+
+        Spark.get("/loginEvent", (request, response) -> {
+            Map<String, Object> viewObjects = new HashMap<String, Object>();
+            String uname = request.session().attribute("currentUser");
+            viewObjects.put("title", "Welcome to your Events, "+uname);
+            //viewObjects.put("name", uname);
+            viewObjects.put("templateName", "home.ftl");
+            return new ModelAndView(viewObjects, "loginEvent.ftl");
+        }, new FreeMarkerEngine());
+
 
 
         //create group
@@ -112,7 +130,7 @@ public class Main {
         Spark.get("/createGroup", (request, response) -> {
             Map<String, Object> viewObjects = new HashMap<String, Object>();
             viewObjects.put("templateName", "createGroupForm.ftl");
-            return new ModelAndView(viewObjects, "loginSuccess.ftl");
+            return new ModelAndView(viewObjects, "loginGroup.ftl");
         }, new FreeMarkerEngine());
 
         Spark.post("/createGroup", (request, response) -> {
@@ -123,7 +141,7 @@ public class Main {
         Spark.get("/createEvent", (request, response) -> {
             Map<String, Object> viewObjects = new HashMap<String, Object>();
             viewObjects.put("templateName", "createEventForm.ftl");
-            return new ModelAndView(viewObjects, "loginSuccess.ftl");
+            return new ModelAndView(viewObjects, "loginEvent.ftl");
         }, new FreeMarkerEngine());
 
         Spark.post("/createEvent", (request, response) -> {
@@ -137,7 +155,7 @@ public class Main {
         Spark.get("/attendGroup", (request, response) -> {
             Map<String, Object> viewObjects = new HashMap<String, Object>();
             viewObjects.put("templateName", "attendGroupForm.ftl");
-            return new ModelAndView(viewObjects, "loginSuccess.ftl");
+            return new ModelAndView(viewObjects, "loginGroup.ftl");
         }, new FreeMarkerEngine());
 
         Spark.post("/attendGroup", (request, response) -> {
@@ -147,7 +165,7 @@ public class Main {
         Spark.get("/attendEvent", (request, response) -> {
             Map<String, Object> viewObjects = new HashMap<String, Object>();
             viewObjects.put("templateName", "attendEventForm.ftl");
-            return new ModelAndView(viewObjects, "loginSuccess.ftl");
+            return new ModelAndView(viewObjects, "loginEvent.ftl");
         }, new FreeMarkerEngine());
 
         Spark.post("/attendEvent", (request, response) -> {
@@ -158,6 +176,17 @@ public class Main {
         //add user to group
         Spark.put("/user/:username/group/:groupname/user/:username2/invite",
                 (req, res) -> handler.addUserToGroup(req), jsonTransformer); // pass
+
+        Spark.get("/inviteGroup", (request, response) -> {
+            Map<String, Object> viewObjects = new HashMap<String, Object>();
+            viewObjects.put("templateName", "inviteGroupForm.ftl");
+            return new ModelAndView(viewObjects, "loginGroup.ftl");
+        }, new FreeMarkerEngine());
+
+        Spark.post("/inviteGroup", (request, response) -> {
+            System.out.println(request.body());
+            return handler.addUserToGroup(request);
+        });
 
         //remove user from group
         Spark.put("/user/:username/group/:groupname/user/:username2/remove",
@@ -190,11 +219,11 @@ public class Main {
         //get user's groups (for debug)
         Spark.get("/user/:uid/group/view", (req, res) -> handler.getUserGroups(req), jsonTransformer); // pass
 
-        Spark.get("getMyGroup", (request, response) -> {
+        Spark.get("/getMyGroup", (request, response) -> {
             response.status(200);
             Map<String, Object> viewObjects = new HashMap<String, Object>();
             viewObjects.put("templateName", "showMyGroup.ftl");
-            return new ModelAndView(viewObjects, "loginSuccess.ftl");
+            return new ModelAndView(viewObjects, "loginGroup.ftl");
         }, new FreeMarkerEngine());
 
         get("/getGroups", (request, response) -> {
@@ -202,11 +231,16 @@ public class Main {
             return gson.toJson(handler.getUserGroupsByUname(request));
         });
 
-        Spark.get("getMyEvent", (request, response) -> {
+        get("/getGroupsLess", (request, response) -> {
+            response.status(200);
+            return gson.toJson(handler.getUserGroupsByUnameLess(request));
+        });
+
+        Spark.get("/getMyEvent", (request, response) -> {
             response.status(200);
             Map<String, Object> viewObjects = new HashMap<String, Object>();
             viewObjects.put("templateName", "showMyEvent.ftl");
-            return new ModelAndView(viewObjects, "loginSuccess.ftl");
+            return new ModelAndView(viewObjects, "loginEvent.ftl");
         }, new FreeMarkerEngine());
 
         get("/getEvents", (request, response) -> {
@@ -214,11 +248,19 @@ public class Main {
             return gson.toJson(handler.getUserEventsByUname(request));
         });
 
+        get("/getEventsLess", (request, response) -> {
+            response.status(200);
+            return gson.toJson(handler.getUserEventsByUnameLess(request));
+        });
+
         get("/getGroupEvents/:gname", (request, response) -> {
             response.status(200);
-            System.out.println("used");
-            System.out.println(request.params("gname"));
             return gson.toJson(handler.getEventsByGname(request));
+        });
+
+        get("/getGroupUsers/:gname", (request, response) -> {
+            response.status(200);
+            return gson.toJson(handler.getUsersByGname(request));
         });
 
 
@@ -236,6 +278,17 @@ public class Main {
 
         //trans group's admin
         Spark.put("/user/:username/user/:username2/group/:groupname/transfer", (req, res) -> handler.transferAdmin(req), jsonTransformer); // pass
+
+        Spark.get("/transferAdmin", (request, response) -> {
+            Map<String, Object> viewObjects = new HashMap<String, Object>();
+            viewObjects.put("templateName", "transferAdminForm.ftl");
+            return new ModelAndView(viewObjects, "loginGroup.ftl");
+        }, new FreeMarkerEngine());
+
+        Spark.post("/transferAdmin", (request, response) -> {
+            System.out.println(request.body());
+            return handler.transferAdmin(request);
+        });
 
         //remove groups
 
