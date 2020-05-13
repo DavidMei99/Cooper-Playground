@@ -13,7 +13,6 @@ edu/cooper/Handler$addToGroup.class
 edu/cooper/model/User.class
 edu/cooper/store/UserStore.class
 edu/cooper/store/GroupStoreJdbi.class
-edu/cooper/Handler$1.class
 edu/cooper/TemplateEngine/FreeMarkerEngine.class
 edu/cooper/store/UserGroupRelJdbi.class
 edu/cooper/Handler.class

@@ -9,6 +9,13 @@ import java.util.List;
 import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.activation.*;
 import spark.Request;
 
@@ -256,16 +263,17 @@ public class Handler {
     }
 
     public String addUserToEvent(final Request request) {
-        User utemp = service.getUserByUname(request.params(":username"));
-        Group gtemp = service.getGroupByGname(request.params(":groupname"));
-        User utemp2 = service.getUserByUname(request.params(":username2"));
+        User utemp = service.getUserByUname(request.session().attribute("currentUser"));
+        addToEvent addtoevent = gson.fromJson(request.body(), addToEvent.class);
+        Group gtemp = service.getGroupByGname(addtoevent.gname);
+        User utemp2 = service.getUserByUname(addtoevent.uname);
         if (utemp == null)
-            return "User does not exit\r\n";
+            return "User does not exist\r\n";
         else if (gtemp == null)
             return "Group does not exist\r\n";
-        Event etemp = service.getEventByEname(request.params(":eventname"), gtemp.getGid());
+        Event etemp = service.getEventByEname(addtoevent.ename, gtemp.getGid());
         if (etemp == null)
-            return "Event does not exit\r\n";
+            return "Event does not exist\r\n";
         else if (utemp2 == null)
             return "Target user does not exist\r\n";
         else if (!service.isAdminOfGroup(utemp.getUid(), gtemp.getGid()))
@@ -277,41 +285,106 @@ public class Handler {
 
         //service.addUserEvent(utemp2, etemp);
 
-        String host="localhost";
-        final String user="xxx.com";//change accordingly
-        final String password="xxx";//change accordingly
+        // Recipient's email ID needs to be mentioned.
+        String to = utemp2.getEmail();
 
-        String to="xxx.com";//change accordingly
+        // Sender's email ID needs to be mentioned
+        String from = "invtie.cooperplayground@gmail.com";
 
-        //Get the session object
-        Properties props = new Properties();
-        props.put("mail.smtp.host",host);
-        props.put("mail.smtp.auth", "true");
+        // Assuming you are sending email from through gmails smtp
+        String host = "smtp.gmail.com";
 
-        Session session = Session.getDefaultInstance(props,
-                new javax.mail.Authenticator() {
-                    protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(user,password);
-                    }
-                });
+        // Get system properties
+        Properties properties = System.getProperties();
 
-        //Compose the message
+        // Setup mail server
+        properties.put("mail.smtp.host", host);
+        properties.put("mail.smtp.port", "465");
+        properties.put("mail.smtp.ssl.enable", "true");
+        properties.put("mail.smtp.auth", "true");
+
+        // Get the Session object.// and pass username and password
+        Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
+
+            protected PasswordAuthentication getPasswordAuthentication() {
+
+                return new PasswordAuthentication("invite.cooperplayground@gmail.com", "cooperplayground");
+
+            }
+
+        });
+
+        // Used to debug SMTP issues
+        session.setDebug(true);
+
         try {
+            // Create a default MimeMessage object.
             MimeMessage message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(user));
-            message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));
-            message.setSubject("javatpoint");
-            message.setText("This is simple program of sending email using JavaMail API");
 
-            //send the message
+            // Set From: header field of the header.
+            message.setFrom(new InternetAddress(from));
+
+            // Set To: header field of the header.
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+
+            // Set Subject: header field
+            message.setSubject("Cooper Playground Event Invitation");
+
+            // Set email
+            String emailText = "<html><body>"+"<p>"+ "Dear " + utemp2.getUname() + "," + "<br>"
+                    + utemp.getUname() + " is inviting you to the event "
+                    + etemp.getEname() + " in " + etemp.getLocation()
+                    + " on " + etemp.getEtime() + ". "
+                    + "Please click the following link if you would like to attend:\n"
+                    + "</p>" + "<p>"
+                    + "<a href="
+                    + "'http://localhost:4567/user/"
+                    + utemp.getUname()
+                    + "/group/" + gtemp.getGname() + "/event/"
+                    + etemp.getEname() + "/user/" + utemp2.getUname()
+                    + "/invite'>" + "I would like to attend" + "</a>"+"</p>"
+                    + "<p>"
+                    + "Thanks,"+ "<br>"
+                    + "Cooper Playground" + "</p>" +"</body></html>";
+
+            // Now set the actual message
+            message.setText(emailText, "UTF-8", "html");
+
+            System.out.println("sending...");
+            // Send message
             Transport.send(message);
-
-            System.out.println("message sent successfully...");
-
-        } catch (MessagingException e) {e.printStackTrace();}
+            System.out.println("Sent message successfully....");
+        } catch (MessagingException mex) {
+            mex.printStackTrace();
+        }
 
 
         return utemp2.getUname() + " is successfully invited to the event " + etemp.getEname() + "\r\n";
+    }
+
+    public String addUserToEventURL(final Request request){
+        User utemp = service.getUserByUname(request.params(":username"));
+        Group gtemp = service.getGroupByGname(request.params(":groupname"));
+        User utemp2 = service.getUserByUname(request.params(":username2"));
+        if (utemp == null)
+            return "User does not exist\r\n";
+        else if (gtemp == null)
+            return "Group does not exist\r\n";
+        Event etemp = service.getEventByEname(request.params(":eventname"), gtemp.getGid());
+        if (etemp == null)
+            return "Event does not exist\r\n";
+        else if (utemp2 == null)
+            return "Target user does not exist\r\n";
+        else if (!service.isAdminOfGroup(utemp.getUid(), gtemp.getGid()))
+            return "User is not admin of the group " + gtemp.getGname() + "\r\n";
+        else if (!service.userInGroup(utemp2.getUid(), gtemp.getGid()))
+            return "Target user is not in group " + gtemp.getGname() + "\r\n";
+        else if (service.userInEvent(utemp2.getUid(), etemp.getEid()))
+            return "Target user is already in event " + etemp.getEname() + "\r\n";
+        service.addUserEvent(utemp2, etemp);
+
+        return utemp2.getUname() + " is successfully added to the event " + etemp.getEname();
+
     }
 
     public String removeUserFromEvent(final Request request) {
@@ -492,6 +565,16 @@ public class Handler {
         }
 
     }
+    public class addToEvent {
+        public String gname = "";
+        public String uname = "";
+        public String ename = "";
+        public addToEvent(){
+
+        }
+
+    }
+
 
     public class GroupLess {
         public String GroupName = "";

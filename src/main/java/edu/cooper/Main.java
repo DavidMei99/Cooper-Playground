@@ -188,6 +188,16 @@ public class Main {
             return handler.addUserToGroup(request);
         });
 
+        Spark.get("/inviteEvent", (request, response) -> {
+            Map<String, Object> viewObjects = new HashMap<String, Object>();
+            viewObjects.put("templateName", "inviteEventForm.ftl");
+            return new ModelAndView(viewObjects, "loginEvent.ftl");
+        }, new FreeMarkerEngine());
+
+        Spark.post("/inviteEvent", (request, response) -> {
+            return handler.addUserToEvent(request);
+        });
+
         //remove user from group
         Spark.put("/user/:username/group/:groupname/user/:username2/remove",
                 (req, res) -> handler.removeUserFromGroup(req), jsonTransformer); // pass
@@ -202,8 +212,9 @@ public class Main {
                 (req, res) -> handler.attendEvent(req), jsonTransformer); // pass
 
         //add member to event
-        Spark.put("/user/:username/group/:groupname/event/:eventname/user/:username2/invite",
-                (req, res) -> handler.addUserToEvent(req), jsonTransformer); // pass
+        Spark.get("/user/:username/group/:groupname/event/:eventname/user/:username2/invite",
+                (req, res) -> handler.addUserToEventURL(req), jsonTransformer); // pass
+
 
         //remove member from event
         Spark.put("/user/:username/group/:groupname/event/:eventname/user/:username2/remove",
@@ -293,8 +304,6 @@ public class Main {
         //remove groups
 
         //remove events
-
-        //rsvp in frontend
 
         //leave group
 

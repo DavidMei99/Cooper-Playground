@@ -14,12 +14,23 @@
         <input type="text" class="form-control" id="location" name="location">
     </div>
     <div class="form-group">
-        <label for="gname">Enter the Group Name</label>
-        <input type="text" class="form-control" id="gname" name="gname">
+        <label for="gname">Enter the Group where the event happens</label>
+        <select type="text" class="form-control" id="gname" name="gname" placeholder="Enter Group Name">
+            <option value="">-- Select Group --</option>
+        </select>
     </div>
     <button type="submit" class="btn btn-default">Submit</button>
 </form>
 
+
+<script>
+    $.getJSON('/getGroups', function (json) {
+        $.each(json, function (index, value) {
+            // APPEND OR INSERT DATA TO SELECT ELEMENT.
+            $('#gname').append('<option value="' + value.gname + '">' + value.gname + '</option>');
+        });
+    });
+</script>
 
 <!-- Simple JS Function to convert the data into JSON and Pass it as ajax Call -->
 <script>

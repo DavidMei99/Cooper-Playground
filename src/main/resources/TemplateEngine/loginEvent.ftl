@@ -34,6 +34,7 @@
                 <li><a href="createEvent">Create Event</a></li>
                 <li><a href="getMyEvent">My Events</a></li>
                 <li><a href="attendEvent">Attend Event</a></li>
+                <li><a href="inviteEvent">Invite</a></li>
                 <li class="active"><a href="/">Logout</a></li>
 
             </ul>
